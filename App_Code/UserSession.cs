@@ -1,0 +1,175 @@
+﻿using System;
+using System.Web;
+
+using bill.payletter.com.CommonModule;
+
+//================================================================
+// FileName        : UserSession.cs
+// Description     : Manager(User) Cookie Decrypt & Check.
+// Copyright 2008 by PayLetter Inc. All rights reserved.
+// Author          : roya@payletter.com,    2008-05-02
+// Modify History  : Just Created.
+//================================================================
+namespace bill.payletter.com.Session
+{
+    ///----------------------------------------------------------------------
+    /// <summary>
+    /// UserSession Class
+    /// </summary>
+    ///----------------------------------------------------------------------
+    public class UserSession
+    {
+        #region private Variables
+        private bool   _isLogin          = false;
+        private Int16  _intSiteCode      = 0;
+        private int    _intUserNo        = 0;
+        private string _strUserID        = string.Empty;
+        private string _strUserName      = string.Empty;
+        #endregion
+
+        public UserSession()
+        {
+            string      pl_strErrMsg     = string.Empty;
+            string      pl_strCookieInfo = string.Empty;
+            string[]    pl_arrCookieInfo = null;
+            HttpCookie  pl_objCookie     = null;
+            
+            _isLogin = false;
+
+            try
+            {
+                pl_objCookie = HttpContext.Current.Request.Cookies[UserGlobal.BOQ_DEFAULT_COOKIE];
+                if (pl_objCookie == null)
+                {
+                    pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 조회 실패";
+                    _isLogin = false;
+                    return;
+                }
+                else if(string.IsNullOrEmpty(pl_objCookie.Value))
+                {
+                    pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 조회 - 빈값";
+                    _isLogin = false;
+                    return;
+                }
+
+                pl_strCookieInfo = UserGlobal.GetDecryptStr(pl_objCookie.Value);
+                if (string.IsNullOrEmpty(pl_strCookieInfo))
+                {
+                    pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 정보 조회 실패";
+                    _isLogin = false;
+                    return;
+                }
+
+                pl_arrCookieInfo = pl_strCookieInfo.Split('/');
+                if (!pl_arrCookieInfo.Length.Equals(5))
+                {
+                    pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 상세 정보 조회 실패";
+                    _isLogin = false;
+                    return;
+                }
+
+                Int16.TryParse(pl_arrCookieInfo[0], out _intSiteCode);
+                Int32.TryParse(pl_arrCookieInfo[1], out _intUserNo);
+                _strUserID   = pl_arrCookieInfo[2];
+                _strUserName = pl_arrCookieInfo[3];
+
+                if (!_intUserNo.Equals(0) && !string.IsNullOrEmpty(_strUserID))
+                {
+                    _isLogin = true;
+                }
+            }
+            catch (Exception pl_objEx)
+            {
+                //사용자 정보 초기화
+                LogOut();
+                UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+            }
+            finally
+            {
+                pl_objCookie = null;
+
+                if (!_isLogin)
+                {
+                LogOut();
+                    UtilLog.WriteCommonLog("UserSession", "UserSession", pl_strErrMsg);
+
+                    Uri referrer = HttpContext.Current.Request.UrlReferrer;
+                    if(referrer != null)
+                    {
+                        UtilLog.WriteCommonLog("UserSession", "UserSession", "요청위치: " + referrer.OriginalString.ToLower());
+                    }
+                }
+            }
+
+            return;
+        }
+
+        ///----------------------------------------------------------------------
+        /// <summary>
+        /// Go to Login page
+        /// </summary>
+        /// <param name="strURL">로그인 후 돌아갈 원 페이지</param>
+        ///----------------------------------------------------------------------
+        public void GoLogin(string strURL)
+        {
+            HttpContext.Current.Response.Write("<script>location.href='" + string.Format("{0}?retUrl={1}", UserGlobal.BOQ_LOGIN_URL, strURL) + "'</script>");
+            HttpContext.Current.Response.End();
+        }
+
+        ///----------------------------------------------------------------------
+        /// <summary>
+        /// 로그아웃을 한다.
+        /// </summary>
+        /// Author         : moondae@payletter.com, 2007-07-03
+        /// 
+        /// Modify History : Just Created.
+        /// 
+        ///----------------------------------------------------------------------
+        public void LogOut()
+        {
+            //쿠키 제거
+            UserGlobal.RemoveCookie(UserGlobal.BOQ_DEFAULT_COOKIE);
+
+            //사용자 정보 초기화
+            ClearUserInfo();
+        }
+
+        ///----------------------------------------------------------------------
+        /// <summary>
+        /// 사용자 정보 초기화
+        /// </summary>
+        ///----------------------------------------------------------------------
+        public void ClearUserInfo()
+        {
+            _isLogin     = false;
+            _intSiteCode = 0;
+            _intUserNo   = 0;
+            _strUserID   = string.Empty;
+            _strUserName = string.Empty;
+
+            return;
+        }
+
+        ///----------------------------------------------------------------------
+        /// <summary>
+        /// Get User number 
+        /// </summary>
+        ///----------------------------------------------------------------------
+        public bool isLogin
+        {
+            get { return _isLogin; }
+        }
+        public int intUserNo
+        {
+            get { return _intUserNo; }
+        }
+        public string strUserID
+        {
+            get { return _strUserID; }
+        }
+        public string strUserName
+        {
+            get { return _strUserName; }
+        }
+    }
+}

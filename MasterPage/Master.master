@@ -1,0 +1,136 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Master.master.cs" Inherits="Master" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="ko"  runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=no, minimal-ui" />
+<link type="text/css" rel="stylesheet" href="/Css/reset.css" />
+<link type="text/css" rel="stylesheet" href="/Css/style.css" />
+<script type="text/javascript" src="/Lib/jQuery/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/Lib/jQuery/jquery.ajax-retry.min.js"></script>
+<script type="text/javascript" src="/Lib/BOQ.js?<%=DateTime.Now.ToString("yyyyMMdd") %>"></script>
+    
+<!-- Head 영역 /-->
+<asp:ContentPlaceHolder id="head" runat="server">
+</asp:ContentPlaceHolder>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        // ReadOnly 권한이면 data-auth가 1인것들 삭제.
+        if(<%=intAuthCode%> == 2){
+            $("[data-auth='1']").remove();
+        }
+        
+        //Left 메뉴 선택
+        var onClass = '<%=strOnClass %>';
+        if (onClass != "") {
+            $("." + onClass).find("a").addClass("on");
+        }
+
+        //Footer 여부
+        var footer = $("#footer");
+        if (footer.html().trim() == "") {
+            footer.hide();
+        }
+
+        //로그아웃
+        $("#btnLogOut").on("click", fnRemoveSaleCookie);
+    });
+
+    // 판매 정보 쿠키 삭제
+    function fnRemoveSaleCookie() {
+        var reqParam = {};
+        var callURL  = "<%=HandlerRefer.USERHANDLER%>";
+        var callBack = "fnRemoveSaleCookieCallBack";
+
+        reqParam["strAjaxTicket"]       = '<%=AjaxTicket%>';
+        reqParam["strMethodName"]       = 'RemoveSaleCookie';
+
+        BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
+    }
+
+    // 판매 정보 쿠키 삭제 Callback
+    function fnRemoveSaleCookieCallBack(result) {
+        if (result.intRetVal != 0) {
+            alert(result.strErrMsg);
+            return;
+        }
+
+        location.href = "<%=strLogoutUrl%>";
+    }
+
+    //상품 안내 레이어 --> 추후 구현 예정
+    function fnShowProductManualMadal() {
+        alert("준비중입니다.");
+    }
+
+    //신용카드 무이자 할부 정보 레이어
+    function fnShowCardInstallmentInfoModal() {
+        $(".layer_wrap").removeClass("layer_on");
+        $("#divCardInstallmentInfo").addClass("layer_on");
+    }
+
+    //카드 프로모션 레이어 --> 추후 구현 예정
+    function fnShowCardPromotionModal() {
+        $(".layer_wrap").removeClass("layer_on");
+        $("#divCardPromotion").addClass("layer_on");
+    }
+</script>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <!-- Header 영역 /-->
+            <asp:ContentPlaceHolder id="pos_header" runat="server">
+                <a href="<%=strSaleIndexUrl %>" title="메인"><h1>GDR ACADEMY</h1></a>
+                <div class="member">
+                    <span class="position"><%=objSes.strUserID %></span>
+                    <em class="name"><%=objSes.strUserName %></em>님
+                </div>
+                <a href="javascript:;" id="btnLogOut" class="btn_logout" title="로그아웃">로그아웃</a>
+            </asp:ContentPlaceHolder>
+        </header>
+
+        <div class="container">
+            <!-- Navi (Left) 영역 /-->
+            <asp:ContentPlaceHolder id="pos_navi" runat="server">
+                <nav>
+                <ul class="top">
+                    <li class="sell"><a href="<%=strSaleIndexUrl %>" title="판매">판매</a></li>
+                    <li class="refund"><a href="<%=strRefundIndexUrl %>" title="환불">환불</a></li>
+                    <li class="manager"><a href="<%=strFreeItemIndexUrl %>" title="관리자 지급">관리자 지급</a></li>
+                </ul>
+                <aside>
+                    <ul>
+                        <li><a href="javascript:fnShowProductManualMadal();" title="상품 안내">상품 안내</a></li>
+                        <li><a href="javascript:fnShowCardInstallmentInfoModal();" title="카드 무이자">카드 무이자</a></li>
+                        <li><a href="javascript:fnShowCardPromotionModal();" title="카드 프로모션" style="visibility:hidden;" >카드 프로모션</a></li>
+                    </ul>
+                </aside>
+            </nav>
+            </asp:ContentPlaceHolder>
+
+            <div class="content">
+                <!-- Content 영역 /-->
+                <asp:ContentPlaceHolder id="pos_content" runat="server">
+                </asp:ContentPlaceHolder>
+                
+                <!-- Footer 영역 /-->
+                <footer id="footer">
+                    <asp:ContentPlaceHolder id="pos_footer" runat="server">
+                    </asp:ContentPlaceHolder>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Layer 영역 /-->
+    <asp:ContentPlaceHolder id="pos_layer" runat="server">
+    </asp:ContentPlaceHolder>
+
+</body>
+</html>
