@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="BaseMasterPage.master.cs" Inherits="BaseMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+        <link rel="stylesheet" href="/DesignTemplate/css/bootstrap.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/DesignTemplate/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/animate-css/animate.css">
+        <link rel="stylesheet" href="/DesignTemplate/vendors/jquery-ui/jquery-ui.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/DesignTemplate/css/style.css">
+        <link rel="stylesheet" href="/DesignTemplate/css/responsive.css">
+
+
+        <script src="/DesignTemplate/js/jquery-3.2.1.min.js"></script>
+        <script src="/DesignTemplate/js/popper.js"></script>
+        <script src="/DesignTemplate/js/bootstrap.min.js"></script>
+        <script src="/DesignTemplate/js/stellar.js"></script>
+        <script src="/DesignTemplate/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/DesignTemplate/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="/DesignTemplate/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="/DesignTemplate/vendors/isotope/isotope-min.js"></script>
+        <script src="/DesignTemplate/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/DesignTemplate/vendors/jquery-ui/jquery-ui.js"></script>
+        <script src="/DesignTemplate/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/DesignTemplate/js/mail-script.js"></script>
+        <script src="/DesignTemplate/js/theme.js"></script>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

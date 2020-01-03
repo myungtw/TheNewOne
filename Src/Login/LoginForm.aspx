@@ -1,17 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogInForm.aspx.cs" Inherits="LoginForm" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head lang="ko" runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>Front :: 로그인</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=no, minimal-ui" />
-<script type="text/javascript" src="/Lib/jQuery/jquery-1.12.4.js"></script>
-<script type="text/javascript" src="/Lib/jQuery/jquery.ajax-retry.min.js"></script>
-<script type="text/javascript" src="/Lib/BOQ.js?<%=DateTime.Now.ToString("yyyyMMdd") %>"></script>
-<script type="text/javascript">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogInForm.aspx.cs" Inherits="LoginForm" MasterPageFile="~/MasterPage/BaseMasterPage.master" %>
+<asp:Content ID="content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
     $(document).ready(function () {
         //로그인 여부
         if ("<%=objSes.isLogin%>" == "True") {
@@ -86,27 +75,80 @@
 
         window.location.href = "<%=strIndexUrl %>";
     }
-</script>
-</head>
-<body>
-    <form id="frmLogin" name="frmLogin" runat="server">
-        <div class="wrap">
-            <div class="login_wrap">
-                <h1>User Login</h1>
-                <h2>User</h2>
-                <div class="login_cont">
-                    <ul>
-                        <li><span class="id"><input type="text"     id="txtID" name="txtID" placeholder="ID를 입력해주세요" /></span></li>
-                        <li><span class="pw"><input type="password" id="txtPW" name="txtPW" placeholder="패스워드를 입력해주세요" /></span></li>
-                    </ul>
-                    <div class="privacy">
-                        <input type="checkbox" id="chkSavaID" name="chkSavaID" /><label for="chkSavaID">아이디 저장</label>
+    </script>
+</asp:Content>
+
+<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<!--================Header Menu Area =================-->
+        <header class="header_area">
+            <div class="main_menu">
+            	<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container box_1620">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+							<ul class="nav navbar-nav menu_nav ml-auto">
+								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
+								<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
+								<li class="nav-item"><a class="nav-link" href="properties.html">Properties</a></li>
+								<li class="nav-item"><a class="nav-link" href="agents.html">Team</a></li>
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+									</ul>
+								</li> 
+								<li class="nav-item submenu dropdown">
+									<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
+									<ul class="dropdown-menu">
+										<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+										<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+									</ul>
+								</li> 
+								<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+							</ul>
+						</div> 
+					</div>
+            	</nav>
+            </div>
+        </header>
+        <section class="home_banner_area blog_banner">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+		        <div class="container">
+                    <div class="element-wrap">
+                    <div class="blog_b_text text-center">
+                    <h1>User Login</h1>
+                    <h2>User</h2>
+                        <div class="login_cont">
+                            <div class="mt-10">
+					            <input type="text"     class="single-input"  id="txtID" name="txtID" placeholder="ID를 입력해주세요" />
+				            </div>
+                            <div class="mt-10">
+					            <input type="password" class="single-input"  id="txtPW" name="txtPW" placeholder="패스워드를 입력해주세요" />
+				            </div>
+                            <div class="switch-wrap d-flex justify-content-between mt-10">
+				                <label for="chkSavaID">아이디 저장</label>
+				                <div class="primary-checkbox">
+					                <input type="checkbox" id="chkSavaID" name="chkSavaID" />
+					                <label for="chkSavaID"></label>
+				                </div>
+                            </div>
+                            <button type="button" id="btnLogin" name="btnLogin" class="genric-btn default-border radius arrow">로그인<span class="lnr lnr-arrow-right"></span></button>
+                        </div>
                     </div>
-                    <button type="button" id="btnLogin" name="btnLogin" class="navy">로그인</button>
                 </div>
             </div>
-        </div>
-    </form>
-</body>
-</html>
+            </div>
+        </section>
+</asp:Content>
 
