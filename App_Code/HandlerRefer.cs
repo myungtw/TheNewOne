@@ -4,6 +4,4 @@
 public class HandlerRefer
 {
     public static string LOGINHANDLER         = "/Src/Handler/LoginHandler.ashx";
-    public static string USERHANDLER          = "/Src/Handler/UserHandler.ashx";
-    public static string SALEHANDLER          = "/Src/Handler/SaleHandler.ashx";
 }
