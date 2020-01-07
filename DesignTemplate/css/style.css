@@ -747,7 +747,7 @@ button:focus {
 }
 
 .banner_area .banner_inner .overlay {
-  background: url(../img/banner/banner.jpg) no-repeat scroll center center;
+  background: url(../img/banner/banner7.jpg) no-repeat scroll center center;
   position: absolute;
   left: 0;
   right: 0;
@@ -2664,7 +2664,7 @@ h6 {
 .generic-blockquote {
   padding: 30px 50px 30px 30px;
   background: #fff;
-  border-left: 2px solid #f8b600;
+  border-left: 2px solid #f5204b;
 }
 
 @media (max-width: 991px) {
