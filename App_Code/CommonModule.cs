@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Net;
 using System.Net.Security;
@@ -14,7 +13,6 @@ using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
-using bill.payletter.com.DataAccess;
 using bill.payletter.com.Session;
 
 //================================================================
@@ -170,28 +168,6 @@ namespace bill.payletter.com.CommonModule
         //로그인 관련 Url
         public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";      //로그인 폼 페이지
         public static string    BOQ_LOGOUT_URL              = string.Empty;             //로그아웃 페이지
-        //메뉴 인덱스 Url
-        public static string    BOQ_SALE_INDEX_URL          = string.Empty;             //판매 인덱스 페이지
-        public static string    BOQ_REFUND_INDEX_URL        = string.Empty;             //환불 인덱스 페이지
-        public static string    BOQ_FREEITEM_INDEX_URL      = string.Empty;             //관리자 지급 인덱스 페이지
-        //결제 관련 Url
-        public static string    BOQ_SALE_PAYMENT_URL        = string.Empty;             //판매자 결제 페이지
-        public static string    BOQ_SALE_PAYMENT_PROC_URL   = string.Empty;             //판매자 결제 처리 페이지
-        public static string    BOQ_SALE_PAYMENT_RESULT_URL = string.Empty;             //판매자 결제 결과 페이지
-        #endregion
-
-        #region 결제(PG) 정보
-        public const  string    BOQ_GAMECODE_ALL            = "ALL";                    //게임 코드(ALL)
-        public const  string    BOQ_GAMECODE_GA             = "GA";                     //게임 코드(ALL)
-        public const  string    BOQ_CURRENCYCODE_KRW        = "KRW";                    //화폐 코드(KRW)
-        public const  string    BOQ_CASHATTRCODE_PG         = "PG-ALL";                 //캐시 속성 코드(실캐시)
-        public const  Int16     BOQ_PAYTOOL_CASH            = 5;                        //PayToolCode 현금
-        public const  Int16     BOQ_PAYTOOL_CARD            = 6;                        //PayToolCode 카드
-        public const  string    BOQ_PGCODE_POS_CASH         = "POS_CASH";               //PGCode 현금
-        public const  string    BOQ_PGCODE_POS_CARD         = "POS_CARD";               //PGCode 카드
-
-        public enum BOQ_PAYSTATE { PGPayRequest = 1, PGPaySuccess = 2, PayCashSuccess = 3, PGPayFail = 4, PGCnlSuccess = 5, PGCnlFail = 6 };   //결제상태코드(1:PG결제요청, 2:PG결제성공, 3:캐시지급성공, 4:PG결제실패, 5:PG취소성공, 6:PG취소실패)
-        public enum BOQ_CNLTYPE  { Payment = 1, Refund = 2};            //취소 타입(1:결제 중 취소, 2:환불 취소)
         #endregion
 
         static UserGlobal()
@@ -210,10 +186,6 @@ namespace bill.payletter.com.CommonModule
                     BOQ_DEFAULT_DOMAIN          = "http://local.bill.com";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_LOGIN_URL);
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
-                    BOQ_SALE_INDEX_URL          = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/SaleIndex.aspx");
-                    BOQ_SALE_PAYMENT_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/Payment.aspx");
-                    BOQ_SALE_PAYMENT_PROC_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentProc.aspx");
-                    BOQ_SALE_PAYMENT_RESULT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentResult.aspx");
 
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
@@ -238,10 +210,6 @@ namespace bill.payletter.com.CommonModule
                     BOQ_DEFAULT_DOMAIN          = "http://dev.bill.com";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
-                    BOQ_SALE_INDEX_URL          = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/SaleIndex.aspx");
-                    BOQ_SALE_PAYMENT_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/Payment.aspx");
-                    BOQ_SALE_PAYMENT_PROC_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentProc.aspx");
-                    BOQ_SALE_PAYMENT_RESULT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentResult.aspx");
 
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
@@ -266,10 +234,6 @@ namespace bill.payletter.com.CommonModule
                     BOQ_DEFAULT_DOMAIN          = "http://bill.com";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
-                    BOQ_SALE_INDEX_URL          = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/SaleIndex.aspx");
-                    BOQ_SALE_PAYMENT_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/Payment.aspx");
-                    BOQ_SALE_PAYMENT_PROC_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentProc.aspx");
-                    BOQ_SALE_PAYMENT_RESULT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Sale/PaymentResult.aspx");
 
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_REAL"]);
