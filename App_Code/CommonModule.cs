@@ -156,7 +156,7 @@ namespace bill.payletter.com.CommonModule
         #endregion
 
         #region 쿠키 정보
-        public const  string    BOQ_COOKIE_DOMAIN           = ".bill.com";              //기본 쿠키 도메인
+        public const  string    BOQ_COOKIE_DOMAIN           = ".payletter.co.kr";              //기본 쿠키 도메인
         public static string    BOQ_DEFAULT_COOKIE          = "billuser_sid";           //기본 쿠키
         public static string    BOQ_SAVEID_COOKIE           = "save_sid";               //아이디 저장 용 쿠키
         #endregion
@@ -183,7 +183,7 @@ namespace bill.payletter.com.CommonModule
                     BOQ_SAVEID_COOKIE           = string.Concat("local", BOQ_SAVEID_COOKIE );
                     #endregion
 
-                    BOQ_DEFAULT_DOMAIN          = "http://local.bill.com";
+                    BOQ_DEFAULT_DOMAIN          = "http://local.familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_LOGIN_URL);
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
 
@@ -207,7 +207,7 @@ namespace bill.payletter.com.CommonModule
                     BOQ_SAVEID_COOKIE           = string.Concat("dev", BOQ_SAVEID_COOKIE );
                     #endregion
                     
-                    BOQ_DEFAULT_DOMAIN          = "http://dev.bill.com";
+                    BOQ_DEFAULT_DOMAIN          = "http://dev.familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
 
