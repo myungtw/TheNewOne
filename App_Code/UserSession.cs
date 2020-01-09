@@ -20,11 +20,14 @@ namespace bill.payletter.com.Session
     public class UserSession
     {
         #region private Variables
-        private bool   _isLogin          = false;
-        private Int16  _intSiteCode      = 0;
-        private int    _intUserNo        = 0;
-        private string _strUserID        = string.Empty;
-        private string _strUserName      = string.Empty;
+        private bool   _isLogin      = false;
+        private int    _intUserNo    = 0;
+        private string _strUserID    = string.Empty;
+        private string _strUserName  = string.Empty;
+        private string _strPhoneNo   = string.Empty;
+        private Int16  _intUserAuth  = 0;
+        private Int16  _intStateCode = 0;
+
         #endregion
 
         public UserSession()
@@ -68,10 +71,12 @@ namespace bill.payletter.com.Session
                     return;
                 }
 
-                Int16.TryParse(pl_arrCookieInfo[0], out _intSiteCode);
-                Int32.TryParse(pl_arrCookieInfo[1], out _intUserNo);
-                _strUserID   = pl_arrCookieInfo[2];
-                _strUserName = pl_arrCookieInfo[3];
+                Int32.TryParse(pl_arrCookieInfo[0], out _intUserNo);
+                _strUserID   = pl_arrCookieInfo[1];
+                _strUserName = pl_arrCookieInfo[2];
+                _strPhoneNo  = pl_arrCookieInfo[3];
+                Int16.TryParse(pl_arrCookieInfo[4], out _intUserAuth);
+                Int16.TryParse(pl_arrCookieInfo[5], out _intStateCode);
 
                 if (!_intUserNo.Equals(0) && !string.IsNullOrEmpty(_strUserID))
                 {
@@ -142,10 +147,13 @@ namespace bill.payletter.com.Session
         public void ClearUserInfo()
         {
             _isLogin     = false;
-            _intSiteCode = 0;
             _intUserNo   = 0;
             _strUserID   = string.Empty;
             _strUserName = string.Empty;
+            _strPhoneNo  = string.Empty;
+
+            _intUserAuth = 0;
+            _intStateCode = 0;
 
             return;
         }
@@ -170,6 +178,18 @@ namespace bill.payletter.com.Session
         public string strUserName
         {
             get { return _strUserName; }
+        }
+        public string strPhoneNo
+        {
+            get { return _strPhoneNo; }
+        }
+        public Int16 intUserAuth
+        {
+            get { return _intUserAuth; }
+        }
+        public Int16 intStateCode
+        {
+            get { return _intStateCode; }
         }
     }
 }
