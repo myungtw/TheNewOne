@@ -92,7 +92,7 @@ namespace bill.payletter.com.Session
             finally
             {
                 pl_objCookie = null;
-
+                _isLogin = true;
                 if (!_isLogin)
                 {
                 LogOut();
