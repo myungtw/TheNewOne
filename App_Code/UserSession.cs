@@ -64,7 +64,7 @@ namespace bill.payletter.com.Session
                 }
 
                 pl_arrCookieInfo = pl_strCookieInfo.Split('/');
-                if (!pl_arrCookieInfo.Length.Equals(5))
+                if (!pl_arrCookieInfo.Length.Equals(6))
                 {
                     pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 상세 정보 조회 실패";
                     _isLogin = false;
