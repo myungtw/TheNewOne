@@ -80,6 +80,13 @@ public class LoginHandler : AshxBaseHandler
             {
                 UserGlobal.RemoveCookie(UserGlobal.BOQ_SAVEID_COOKIE);
             }
+
+            if(!string.IsNullOrWhiteSpace(objReqParam.strEncFamilyEventNo))
+            {
+                Int64 intDecFamilyEventNo = Convert.ToInt64(UserGlobal.GetDecryptStr(objReqParam.strEncFamilyEventNo));
+
+                InsFamilyEventJoin(pl_intUserNo, intDecFamilyEventNo, out strErrMsg);
+            }
         }
         catch (Exception pl_objEx)
         {
@@ -98,10 +105,11 @@ public class LoginHandler : AshxBaseHandler
     //로그인 요청 클래스
     public class VerifyLoginReqParam : DefaultReqParam
     {
-        public Int16    intSiteCode     { get; set; }
-        public string   strI            { get; set; }
-        public string   strP            { get; set; }
-        public bool     blnSave         { get; set; }
+        public Int16    intSiteCode         { get; set; }
+        public string   strI                { get; set; }
+        public string   strP                { get; set; }
+        public bool     blnSave             { get; set; }
+        public string   strEncFamilyEventNo { get; set; }
     }
 
     //로그인 응답 클래스
@@ -120,7 +128,7 @@ public class LoginHandler : AshxBaseHandler
         strUserName  = string.Empty;
         strPhoneNo   = string.Empty;
         intUserAuth  = 0;
-        intStateCode = 0;        
+        intStateCode = 0;
         strErrMsg    = string.Empty;
         try
         {
@@ -270,6 +278,57 @@ public class LoginHandler : AshxBaseHandler
             if (!pl_intRetVal.Equals(0))
             {
                 UtilLog.WriteLog("CheckUserPwd", pl_intRetVal, strErrMsg);
+            }
+        }
+
+        return pl_intRetVal;
+    }
+
+    //이벤트 입력
+    private int InsFamilyEventJoin(int intUserNo, Int64 intFamilyEventNo, out string strErrMsg)
+    {
+        int  pl_intRetVal = 0;
+        IDas pl_objDas    = null;
+        strErrMsg         = string.Empty;
+
+        try
+        {
+            //사용자 정보 조회        
+            pl_objDas = new IDas();
+            pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+            pl_objDas.CommandType = CommandType.StoredProcedure;
+            pl_objDas.CodePage = 0;
+
+            pl_objDas.AddParam("@pi_intUserNo",         DBType.adInteger, intUserNo,        0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intFamilyEventNo",  DBType.adBigInt,  intFamilyEventNo, 0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@po_strErrMsg",         DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intRetVal",         DBType.adInteger, DBNull.Value,     4,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDBErrMsg",       DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);
+
+            pl_objDas.AddParam("@po_intDBRetVal",       DBType.adInteger, DBNull.Value,     4,      ParameterDirection.Output);
+
+            pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_JOIN_TX_INS");
+
+            pl_intRetVal = Convert.ToInt32(pl_objDas.GetParam("@po_intRetVal"));
+            strErrMsg    = Convert.ToString(pl_objDas.GetParam("@po_strErrMsg"));
+        }
+        catch (Exception pl_objEx)
+        {
+            pl_intRetVal = -15213;
+            strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+            UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+        }
+        finally
+        {
+            if (pl_objDas != null)
+            {
+                pl_objDas.Close();
+                pl_objDas = null;
+            }
+
+            if (!pl_intRetVal.Equals(0))
+            {
+                UtilLog.WriteLog("GetUserCurrentPwd", pl_intRetVal, strErrMsg);
             }
         }
 

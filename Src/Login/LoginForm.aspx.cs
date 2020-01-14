@@ -42,7 +42,14 @@ public partial class LoginForm : PageBase
             return UserGlobal.BOQ_INDEX_URL;
         }
     }
-     
+    protected string EncFamilyEventNo
+    {
+        get
+        {
+            return Request.Form["encfamilyeventno"];
+        }
+    }
+
     ///-----------------------------------------------------
     /// <summary>
     /// Name          : Page_Init()

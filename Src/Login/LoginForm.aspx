@@ -59,11 +59,12 @@
         var callURL  = "<%=HandlerRefer.LOGINHANDLER%>";
         var callBack = "fnVerifyLoginCallBack";
 
-        reqParam["strAjaxTicket"] = '<%=AjaxTicket %>';
-        reqParam["strMethodName"] = 'VerifyLogin';
-        reqParam["strI"]          = loginID;
-        reqParam["strP"]          = loginPW;
-        reqParam["blnSave"]       = isSave;
+        reqParam["strAjaxTicket"]       = '<%=AjaxTicket %>';
+        reqParam["strMethodName"]       = 'VerifyLogin';
+        reqParam["strI"]                = loginID;
+        reqParam["strP"]                = loginPW;
+        reqParam["blnSave"]             = isSave;
+        reqParam["strEncFamilyEventNo"] = '<%=EncFamilyEventNo%>';
 
         BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
     }
