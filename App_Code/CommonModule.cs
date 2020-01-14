@@ -136,6 +136,7 @@ namespace bill.payletter.com.CommonModule
 
         // 데몬 정보
         public static string    BOQ_HOST_DAS                = string.Empty;             //빌링 DAS 정보
+        public static string    BOQ_DB_CONN                 = "Data Source=10.10.120.150,1433;Initial Catalog=FAMILYEVENT_DB;User ID=FamilyEventUser;PASSWORD=rhdahwjs12#$;";   //DB Connection String 정보
         #endregion
         
         #region 로그 경로

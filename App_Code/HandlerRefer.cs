@@ -3,5 +3,6 @@
 /// </summary>
 public class HandlerRefer
 {
-    public static string LOGINHANDLER         = "/Src/Handler/LoginHandler.ashx";
+    public static string LOGINHANDLER           = "/Src/Handler/LoginHandler.ashx";
+    public static string FAMILYEVENTHANDLER     = "/Src/Handler/FamilyEventHandler.ashx";
 }
