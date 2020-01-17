@@ -45,6 +45,12 @@ public class FacilityTicketHandler : AshxBaseHandler
 
             pl_objDas.SetQuery("dbo.UP_FACILITY_TICKET_HOLD_UR_LST");
 
+            if (!pl_objDas.LastErrorCode.Equals(0))
+            {
+                pl_intRetVal = pl_objDas.LastErrorCode;
+                strErrMsg    = pl_objDas.LastErrorMessage;
+                return pl_intRetVal;
+            }
             objRes.intRowCnt = pl_objDas.RecordCount;
             objRes.objDT     = pl_objDas.objDT;
         }
