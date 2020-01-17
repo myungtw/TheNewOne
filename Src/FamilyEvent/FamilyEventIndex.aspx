@@ -7,7 +7,6 @@
     $(document).ready(function () {
         //내 이벤트 내역
         fnFamilyEventHoldList();
-
     });
 
 
@@ -21,6 +20,8 @@
         reqParam["strAjaxTicket"] = '<%=AjaxTicket %>';
         reqParam["strMethodName"] = 'GetFamilyEventHoldList';
         reqParam["intUserNo"]     = userNo;
+
+        console.log(reqParam);
 
         BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
     }
@@ -44,25 +45,25 @@
             html += "<div class='col-lg-4'>";
             html += "   <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>";
             html += "       <div class='pp_img'>";
-            html += "           <img class='img-fluid' src='/DesignTemplate/img/properties/pp-1.jpg' alt=''></a>";
-            html += "       </div>";
-            html += "       <div class='pp_content'>";
-            html += "           <a href='#'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
-            html += "       </div>";
-            html += "       <div class='pp_footer'>";
-            html += "           <h5>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + "</h5>";
-            html += "           <h5>" + objRet[i].FAMILYEVENTTIME + "</h5>";
+            html += "           <img class='img-fluid' src='" + objRet[i].ROOMIMG + "' alt=''>";
             html += "       </div>";
             html += "   </a>";
+            html += "   <div class='pp_content'>";
+            html += "       <h4>" + objRet[i].FAMILYEVENTNAME + "</h4>";
+            html += "   </div>";
+            html += "   <div class='pp_footer'>";
+            html += "       <h5>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + "</h5>";
+            html += "       <h5>" + objRet[i].FAMILYEVENTTIME + "</h5>";
+            html += "   </div>";
             html += "</div>";
         }
 
         $("#divFamilyEventHoldList").html(html);
     }
 
+    //내 이벤트 정보
     function fnMyFamilyEvent(familyEventNo) {
         var url = '<%=strMyFamilyEventUrl %>' + "?familyeventno=" + familyEventNo;
-
         window.document.location = url;
     }
 
