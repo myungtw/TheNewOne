@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 using bill.payletter.com.CommonModule;
 
-public partial class index : PageBase
+public partial class FamilyEventIndex : PageBase
 {
     protected string AjaxTicket
     {
@@ -16,6 +16,14 @@ public partial class index : PageBase
             return UserGlobal.GetAjaxTicket(Request);
         }
     }
+    protected string strMyFamilyEventUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
+        }
+    }
+    protected int intUserNo = 0;
 
     ///-----------------------------------------------------
     /// <summary>
@@ -29,9 +37,16 @@ public partial class index : PageBase
         return;
     }
 
-
+    ///-----------------------------------------------------
+    /// <summary>
+    /// Name          : Page_Load()
+    /// Description   : 페이지 로드
+    /// </summary>
+    ///-----------------------------------------------------
     protected void Page_Load(object sender, EventArgs e)
     {
+        //PL_DEBUG : 로그인 아이디 필요
+        intUserNo = 1;
 
     }
 }

@@ -109,7 +109,7 @@ namespace bill.payletter.com.CommonModule
     public class UserGlobal
     {
         #region 기본 정보
-        public const  string    PAGE_TITLE                  = "User";
+        public const  string    PAGE_TITLE                  = "FamilyEvent";
         public const  int       BOQ_DEFAULT_CHARSET         = 65001;
 
         public const  Int16     DEFAULT_SITECODE            = 1;
@@ -136,7 +136,6 @@ namespace bill.payletter.com.CommonModule
 
         // 데몬 정보
         public static string    BOQ_HOST_DAS                = string.Empty;             //빌링 DAS 정보
-        public static string    BOQ_DB_CONN                 = "Data Source=10.10.120.150,1433;Initial Catalog=FAMILYEVENT_DB;User ID=FamilyEventUser;PASSWORD=rhdahwjs12#$;";   //DB Connection String 정보
         #endregion
         
         #region 로그 경로
@@ -169,6 +168,10 @@ namespace bill.payletter.com.CommonModule
         //로그인 관련 Url
         public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";      //로그인 폼 페이지
         public static string    BOQ_LOGOUT_URL              = string.Empty;             //로그아웃 페이지
+
+        //이벤트 관련 Url
+        public static string    BOQ_FAMILYEVENT_INDEX_URL       = "/Src/FamilyEvent/FamilyEventIndex.aspx";      //이벤트 Index 페이지
+        public static string    BOQ_FAMILYEVENT_MYEVENT_URL     = "/Src/FamilyEvent/MyFamilyEvent.aspx";         //내 이벤트 페이지
         #endregion
 
         static UserGlobal()
@@ -187,7 +190,9 @@ namespace bill.payletter.com.CommonModule
                     BOQ_DEFAULT_DOMAIN          = "http://local.familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_LOGIN_URL);
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
-
+                    
+                    BOQ_FAMILYEVENT_INDEX_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_INDEX_URL);
+                    BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
                     BOQ_SHA256_REQ_KEY          = GetDecryptStr(ConfigurationManager.AppSettings["BOQ_SHA256_REQ_KEY_PAY"]);

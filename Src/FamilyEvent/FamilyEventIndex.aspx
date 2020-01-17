@@ -1,7 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/BaseMasterPage.master" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/BaseMasterPage.master" AutoEventWireup="true" CodeFile="FamilyEventIndex.aspx.cs" Inherits="FamilyEventIndex" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 <script type="text/javascript">
+    var userNo = <%=intUserNo %>;
+
     $(document).ready(function () {
         //내 이벤트 내역
         fnFamilyEventHoldList();
@@ -18,7 +20,7 @@
 
         reqParam["strAjaxTicket"] = '<%=AjaxTicket %>';
         reqParam["strMethodName"] = 'GetFamilyEventHoldList';
-        reqParam["intUserNo"]     = 1;
+        reqParam["intUserNo"]     = userNo;
 
         BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
     }
@@ -27,20 +29,20 @@
         console.log(result);
         if (result.intRetVal != 0) {
             alert("내역 조회에 실패하였습니다.");
-            $("#divHoldList").html("");
+            $("#divFamilyEventHoldList").html("");
             return;
         }
 
         var html = "";
         var objRet = result.objDT;
         if (objRet == null || objRet.length <= 0) {
-            $("#divHoldList").html("");
+            $("#divFamilyEventHoldList").html("");
             return;
         }
 
         for (i = 0; i < objRet.length; i++) {
             html += "<div class='col-lg-4'>";
-            html += "   <a href='javascript:fnFamilyEventHoldDtl(" + objRet[i].FAMILYEVENTNO + ");'>";
+            html += "   <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>";
             html += "       <div class='pp_img'>";
             html += "           <img class='img-fluid' src='/DesignTemplate/img/properties/pp-1.jpg' alt=''></a>";
             html += "       </div>";
@@ -55,29 +57,14 @@
             html += "</div>";
         }
 
-        $("#divHoldList").html(html);
+        $("#divFamilyEventHoldList").html(html);
     }
 
-    //이벤트 정보 조회
-    function fnFamilyEventHoldInfo(familyEventNo) {
-        // ========= 핸들러 호출 ===========================
-        var reqParam = {};
-        var callURL = "<%=HandlerRefer.FAMILYEVENTHANDLER%>";
-        var callBack = "fnFamilyEventHoldInfoCallBack";
+    function fnMyFamilyEvent(familyEventNo) {
+        var url = '<%=strMyFamilyEventUrl %>' + "?familyeventno=" + familyEventNo;
 
-        reqParam["strAjaxTicket"]    = '<%=AjaxTicket %>';
-        reqParam["strMethodName"]    = 'GetFamilyEventInfo';
-        reqParam["intFamilyEventNo"] = familyEventNo;
-
-        BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
+        window.document.location = url;
     }
-
-    function fnFamilyEventHoldInfoCallBack(result)
-    {
-
-    }
-
-
 
 </script>
 </asp:Content>
@@ -89,7 +76,7 @@
             <h2>내 이벤트</h2>
             <p>현재 등록된 나의 이벤트를 확인하세요.</p>
         </div>
-        <div id="divHoldList" class="row properties_inner">
+        <div id="divFamilyEventHoldList" class="row properties_inner">
         </div>
     </div>
 </section>
