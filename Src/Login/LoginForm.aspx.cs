@@ -1,7 +1,6 @@
 ﻿using System;
 
 using bill.payletter.com.CommonModule;
-using bill.payletter.com.Session;
 
 ///================================================================
 /// <summary>
