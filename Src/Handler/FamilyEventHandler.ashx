@@ -25,7 +25,7 @@ public class FamilyEventHandler : AshxBaseHandler
     /// </summary>
     //-------------------------------------------------------------
     [MethodSet(loggingFlag = true, pageType = PageAccessType.Login)]
-    private int GetFamilyEventHoldList(DefaultReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
+    private int GetMyFamilyEventHoldList(DefaultReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
         IDas pl_objDas    = null;
@@ -42,7 +42,7 @@ public class FamilyEventHandler : AshxBaseHandler
             pl_objDas.AddParam("@pi_intUserNo",     DBType.adInteger,   objSes.intUserNo,  0,  ParameterDirection.Input);
             pl_objDas.AddParam("@po_intRecordCnt",  DBType.adInteger,   DBNull.Value,      0,  ParameterDirection.Output);
 
-            pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_HOLD_UR_LST");
+            pl_objDas.SetQuery("dbo.UP_MY_FAMILY_EVENT_HOLD_UR_LST");
 
             if (!pl_objDas.LastErrorCode.Equals(0))
             {
@@ -328,5 +328,67 @@ public class FamilyEventHandler : AshxBaseHandler
 
 
 
+    #endregion
+
+
+
+    #region 초대받은 이벤트 조회
+    //-------------------------------------------------------------
+    /// <summary>
+    /// 초대받은 이벤트 보유 내역 조회
+    /// </summary>
+    //-------------------------------------------------------------
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login)]
+    private int GetInvitedFamilyEventHoldList(DefaultReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
+    {
+        int  pl_intRetVal = 0;
+        IDas pl_objDas    = null;
+
+        strErrMsg = string.Empty;
+
+        try
+        {
+            pl_objDas = new IDas();
+            pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+            pl_objDas.CommandType = CommandType.StoredProcedure;
+            pl_objDas.CodePage = 0;
+
+            pl_objDas.AddParam("@pi_intUserNo",     DBType.adInteger,   objSes.intUserNo,  0,  ParameterDirection.Input);
+            pl_objDas.AddParam("@po_intRecordCnt",  DBType.adInteger,   DBNull.Value,      0,  ParameterDirection.Output);
+
+            pl_objDas.SetQuery("dbo.UP_INVITED_FAMILY_EVENT_HOLD_UR_LST");
+
+            if (!pl_objDas.LastErrorCode.Equals(0))
+            {
+                pl_intRetVal = pl_objDas.LastErrorCode;
+                strErrMsg    = pl_objDas.LastErrorMessage;
+                return pl_intRetVal;
+            }
+
+            objResParam.intRowCnt = pl_objDas.RecordCount;
+            objResParam.objDT     = pl_objDas.objDT;
+        }
+        catch (Exception pl_objEx)
+        {
+            pl_intRetVal = -15214;
+            strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+            UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+        }
+        finally
+        {
+            if (pl_objDas != null)
+            {
+                pl_objDas.Close();
+                pl_objDas = null;
+            }
+
+            if (!pl_intRetVal.Equals(0))
+            {
+                UtilLog.WriteLog("GetFamilyEventHoldList", pl_intRetVal, strErrMsg);
+            }
+        }
+
+        return pl_intRetVal;
+    }
     #endregion
 }
