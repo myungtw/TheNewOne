@@ -3,14 +3,14 @@ using System;
 
 ///================================================================
 /// <summary>
-/// FileName       : PayInfoInsSample.aspx
+/// FileName       : PayInfoIns.aspx
 /// Description    : 결제정보 세팅페이지
 /// Copyright 2019 by PayLetter Inc. All rights reserved.
 /// Author         : ysjee@payletter.com, 2020-01-14
 /// Modify History : Just Created.
 /// </summary>
 ///================================================================
-public partial class PayInfoInsSample : PageBase
+public partial class PayInfoIns : PageBase
 {
 
     protected string AjaxTicket

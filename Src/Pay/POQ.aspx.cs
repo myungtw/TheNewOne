@@ -6,7 +6,7 @@ public partial class POQ : PageBase
     protected void Page_Load(object sender, EventArgs e)
     {
         form1.Method = "POST";
-        form1.Action = Request.UrlReferrer.AbsoluteUri;
+        form1.Action = "/Src/Pay/PayProc.aspx";
         foreach(string key in Request.Form.AllKeys)
         {
             if(!key.ToLower().Contains("_view"))
