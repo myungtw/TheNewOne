@@ -24,7 +24,7 @@ public class FamilyEventHandler : AshxBaseHandler
     /// 가족 이벤트 보유 내역 조회
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone)]
     private int GetFamilyEventHoldList(GetFamilyEventHoldListReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
@@ -77,6 +77,7 @@ public class FamilyEventHandler : AshxBaseHandler
         return pl_intRetVal;
     }
     #endregion
+
     #region 가족 이벤트 세부 소속 조회
     //-------------------------------------------------------------
     /// <summary>

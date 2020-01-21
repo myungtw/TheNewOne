@@ -1,6 +1,5 @@
 ﻿<%@ WebHandler Language="C#" Class="PayHandler" %>
 
-using Dapper;
 using System;
 using System.Data;
 
