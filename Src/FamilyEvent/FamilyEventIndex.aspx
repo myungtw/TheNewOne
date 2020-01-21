@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 <script type="text/javascript">
-    var userNo = <%=intUserNo %>;
 
     $(document).ready(function () {
         //내 이벤트 내역
@@ -19,15 +18,11 @@
 
         reqParam["strAjaxTicket"] = '<%=AjaxTicket %>';
         reqParam["strMethodName"] = 'GetFamilyEventHoldList';
-        reqParam["intUserNo"]     = userNo;
-
-        console.log(reqParam);
 
         BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
     }
 
     function fnFamilyEventHoldListCallBack(result) {
-        console.log(result);
         if (result.intRetVal != 0) {
             alert("내역 조회에 실패하였습니다.");
             $("#divFamilyEventHoldList").html("");
@@ -38,23 +33,30 @@
         var objRet = result.objDT;
         if (objRet == null || objRet.length <= 0) {
             $("#divFamilyEventHoldList").html("");
+            $(".myevent").hide();
             return;
         }
 
         for (i = 0; i < objRet.length; i++) {
             html += "<div class='col-lg-4'>";
+            html += "  <div class='properties_item'>";
+                
             html += "   <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>";
             html += "       <div class='pp_img'>";
             html += "           <img class='img-fluid' src='" + objRet[i].ROOMIMG + "' alt=''>";
             html += "       </div>";
             html += "   </a>";
             html += "   <div class='pp_content'>";
-            html += "       <h4>" + objRet[i].FAMILYEVENTNAME + "</h4>";
+            html += "       <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
+            html += "       <div class='tags'>";
+            html += "           <h5>" + objRet[i].HALLADDRESS + "</h5>";
+            html += "       </div>";
+            html += "       <div class='pp_footer'>";                            
+            html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";                        
+            html += "           <a class='main_btn' href='#'>결제 하러가기</a>";            
+            html += "       </div>";
             html += "   </div>";
-            html += "   <div class='pp_footer'>";
-            html += "       <h5>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + "</h5>";
-            html += "       <h5>" + objRet[i].FAMILYEVENTTIME + "</h5>";
-            html += "   </div>";
+            html += "  </div>";
             html += "</div>";
         }
 
@@ -71,7 +73,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<section class="properties_area pad_top">
+<section class="properties_area pad_top myevent">
     <div class="container">
         <div class="main_title">
             <h2>내 이벤트</h2>

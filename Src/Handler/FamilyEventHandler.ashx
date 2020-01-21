@@ -24,8 +24,8 @@ public class FamilyEventHandler : AshxBaseHandler
     /// 가족 이벤트 보유 내역 조회
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone)]
-    private int GetFamilyEventHoldList(GetFamilyEventHoldListReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login)]
+    private int GetFamilyEventHoldList(DefaultReqParam objReqParam, DefaultListResParam objResParam, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
         IDas pl_objDas    = null;
@@ -39,8 +39,8 @@ public class FamilyEventHandler : AshxBaseHandler
             pl_objDas.CommandType = CommandType.StoredProcedure;
             pl_objDas.CodePage = 0;
 
-            pl_objDas.AddParam("@pi_intUserNo",     DBType.adInteger,   objReqParam.intUserNo,  0,  ParameterDirection.Input);
-            pl_objDas.AddParam("@po_intRecordCnt",  DBType.adInteger,   DBNull.Value,           0,  ParameterDirection.Output);
+            pl_objDas.AddParam("@pi_intUserNo",     DBType.adInteger,   objSes.intUserNo,  0,  ParameterDirection.Input);
+            pl_objDas.AddParam("@po_intRecordCnt",  DBType.adInteger,   DBNull.Value,      0,  ParameterDirection.Output);
 
             pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_HOLD_UR_LST");
 
@@ -84,7 +84,7 @@ public class FamilyEventHandler : AshxBaseHandler
     /// 가족 이벤트 세부 소속 조회
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
     private int SubCategoryLst(ReqFamilyEventDtl objReq, DefaultListResParam objRes, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
@@ -136,7 +136,7 @@ public class FamilyEventHandler : AshxBaseHandler
     /// 가족 이벤트 메인 소속 조회
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
     private int MstCategoryLst(ReqFamilyEventDtl objReq, DefaultListResParam objRes, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
@@ -182,18 +182,12 @@ public class FamilyEventHandler : AshxBaseHandler
         return pl_intRetVal;
     }
 
-    // 가족 이벤트 보유 내역 조회 요청 클래스
-    public class GetFamilyEventHoldListReqParam : DefaultReqParam
-    {
-        public int intUserNo { get; set; }
-    }
-
     //-------------------------------------------------------------
     /// <summary>
     /// 가족 이벤트 정보 조회
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Everyone, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
     private int GetFamilyEventInfo(GetFamilyEventInfoReqParam objReqParam, GetFamilyEventInfoResParam objResParam, out string strErrMsg)
     {
         int  pl_intRetVal = 0;

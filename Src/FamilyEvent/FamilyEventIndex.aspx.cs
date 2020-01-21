@@ -23,7 +23,6 @@ public partial class FamilyEventIndex : PageBase
             return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
         }
     }
-    protected int intUserNo = 0;
 
     ///-----------------------------------------------------
     /// <summary>
@@ -45,8 +44,5 @@ public partial class FamilyEventIndex : PageBase
     ///-----------------------------------------------------
     protected void Page_Load(object sender, EventArgs e)
     {
-        //PL_DEBUG : 로그인 아이디 필요
-        intUserNo = 1;
-
     }
 }
