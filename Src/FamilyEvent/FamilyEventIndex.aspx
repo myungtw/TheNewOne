@@ -47,7 +47,7 @@
             html += "           <img class='img-fluid' src='/DesignTemplate/img/properties/pp-1.jpg' alt=''></a>";
             html += "       </div>";
             html += "       <div class='pp_content'>";
-            html += "           <a href='#'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
+            html += "           <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
             html += "       </div>";
             html += "       <div class='pp_footer'>";
             html += "           <h5>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + "</h5>";

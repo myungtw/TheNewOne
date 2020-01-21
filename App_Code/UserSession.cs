@@ -92,10 +92,9 @@ namespace bill.payletter.com.Session
             finally
             {
                 pl_objCookie = null;
-                _isLogin = true;
                 if (!_isLogin)
                 {
-                LogOut();
+                    LogOut();
                     UtilLog.WriteCommonLog("UserSession", "UserSession", pl_strErrMsg);
 
                     Uri referrer = HttpContext.Current.Request.UrlReferrer;

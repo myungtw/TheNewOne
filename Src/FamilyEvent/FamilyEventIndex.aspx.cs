@@ -33,7 +33,7 @@ public partial class FamilyEventIndex : PageBase
     ///-----------------------------------------------------
     private void Page_Init(object sender, EventArgs e)
     {
-        _pageAccessType = PageAccessType.Everyone;
+        _pageAccessType = PageAccessType.Login;
         return;
     }
 

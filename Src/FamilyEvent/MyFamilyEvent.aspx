@@ -13,6 +13,16 @@
 
         //이벤트 정보 조회
         fnFamilyEventInfo();
+        
+        //QR코드 그리기
+        var qrcode = new QRCode("qrcode", {
+            text: "http://test.co.kr?encFamilyEventNo="+familyEventNo,
+            width: "250",
+            height: "250",
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.L
+        });
 
     });
 
@@ -100,6 +110,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+    			<div class="welcome_img">
+                    <img src="/DesignTemplate/img/qrCode.png" alt=""/>
+                    <div class="pop-dn" id="pop-dn1" style="position: absolute;">
+                        <div id="qrcode" class="qr-code" style="position: relative; top: -325px; left: 75px;"></div>
+                    </div>
+    			</div>
+    		</div>
         </div>
     </div>
 </section>

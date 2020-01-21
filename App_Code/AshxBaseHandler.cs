@@ -117,6 +117,7 @@ namespace bill.payletter.com.handler
                         pl_strErrMsg = "do not have permission.";
                         return;
                     }
+
                 }
 
                 // 생성된 파라미터를 핸들러 메소드에 넣어준다.
