@@ -2,6 +2,8 @@
 using System.Web;
 
 using bill.payletter.com.CommonModule;
+using BOQv7Das_Net;
+using System.Data;
 
 //================================================================
 // FileName        : UserSession.cs
@@ -81,6 +83,15 @@ namespace bill.payletter.com.Session
                 if (!_intUserNo.Equals(0) && !string.IsNullOrEmpty(_strUserID))
                 {
                     _isLogin = true;
+
+                    var encFamilyEventNo = HttpContext.Current.Request.QueryString["encfamilyeventno"];
+
+                    if (!string.IsNullOrWhiteSpace(encFamilyEventNo))
+                    {
+                        Int64 intDecFamilyEventNo = Convert.ToInt64(UserGlobal.GetDecryptStr(encFamilyEventNo));
+
+                        InsFamilyEventJoin(_intUserNo, intDecFamilyEventNo, out pl_strErrMsg);
+                    }
                 }
             }
             catch (Exception pl_objEx)
@@ -155,6 +166,58 @@ namespace bill.payletter.com.Session
             _intStateCode = 0;
 
             return;
+        }
+
+        //이벤트 입력
+        private int InsFamilyEventJoin(int intUserNo, Int64 intFamilyEventNo, out string strErrMsg)
+        {
+            int  pl_intRetVal = 0;
+            IDas pl_objDas    = null;
+            strErrMsg         = string.Empty;
+
+            try
+            {
+                //사용자 정보 조회        
+                pl_objDas = new IDas();
+                pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+                pl_objDas.CommandType = CommandType.StoredProcedure;
+                pl_objDas.CodePage = 0;
+
+                pl_objDas.AddParam("@pi_intUserNo",         DBType.adInteger, intUserNo,        0,      ParameterDirection.Input);
+                pl_objDas.AddParam("@pi_intFamilyEventNo",  DBType.adBigInt,  intFamilyEventNo, 0,      ParameterDirection.Input);
+                pl_objDas.AddParam("@pi_intUserRole",       DBType.adTinyInt, 3,                0,      ParameterDirection.Input);
+                pl_objDas.AddParam("@po_strErrMsg",         DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);
+                pl_objDas.AddParam("@po_intRetVal",         DBType.adInteger, DBNull.Value,     4,      ParameterDirection.Output);
+                pl_objDas.AddParam("@po_strDBErrMsg",       DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);
+
+                pl_objDas.AddParam("@po_intDBRetVal",       DBType.adInteger, DBNull.Value,     4,      ParameterDirection.Output);
+
+                pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_JOIN_TX_INS");
+
+                pl_intRetVal = Convert.ToInt32(pl_objDas.GetParam("@po_intRetVal"));
+                strErrMsg    = Convert.ToString(pl_objDas.GetParam("@po_strErrMsg"));
+            }
+            catch (Exception pl_objEx)
+            {
+                pl_intRetVal = -15213;
+                strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+                UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+            }
+            finally
+            {
+                if (pl_objDas != null)
+                {
+                    pl_objDas.Close();
+                    pl_objDas = null;
+                }
+
+                if (!pl_intRetVal.Equals(0))
+                {
+                    UtilLog.WriteLog("GetUserCurrentPwd", pl_intRetVal, strErrMsg);
+                }
+            }
+
+            return pl_intRetVal;
         }
 
         ///----------------------------------------------------------------------

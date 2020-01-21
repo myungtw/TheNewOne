@@ -64,7 +64,6 @@
         reqParam["strI"]                = loginID;
         reqParam["strP"]                = loginPW;
         reqParam["blnSave"]             = isSave;
-        reqParam["strEncFamilyEventNo"] = '<%=EncFamilyEventNo%>';
 
         BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
     }
