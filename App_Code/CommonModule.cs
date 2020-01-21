@@ -163,11 +163,11 @@ namespace bill.payletter.com.CommonModule
 
         #region Url 정보
         //인덱스 Url
-        public static string    BOQ_INDEX_URL               = "/index.aspx";            //인덱스 페이지
+        public static string    BOQ_INDEX_URL               = "/Src/FamilyEvent/FamilyEventIndex.aspx"; //인덱스 페이지
 
         //로그인 관련 Url
-        public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";      //로그인 폼 페이지
-        public static string    BOQ_LOGOUT_URL              = string.Empty;             //로그아웃 페이지
+        public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";              //로그인 폼 페이지
+        public static string    BOQ_LOGOUT_URL              = string.Empty;                             //로그아웃 페이지
 
         //이벤트 관련 Url
         public static string    BOQ_FAMILYEVENT_INDEX_URL       = "/Src/FamilyEvent/FamilyEventIndex.aspx";      //이벤트 Index 페이지
