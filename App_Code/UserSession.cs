@@ -28,6 +28,7 @@ namespace bill.payletter.com.Session
         private string _strUserName  = string.Empty;
         private string _strPhoneNo   = string.Empty;
         private Int16  _intUserAuth  = 0;
+        private Int16  _intUserRole  = 0;
         private Int16  _intStateCode = 0;
 
         #endregion
@@ -66,7 +67,7 @@ namespace bill.payletter.com.Session
                 }
 
                 pl_arrCookieInfo = pl_strCookieInfo.Split('/');
-                if (!pl_arrCookieInfo.Length.Equals(6))
+                if (!pl_arrCookieInfo.Length.Equals(7))
                 {
                     pl_strErrMsg = "쿠키 " + UserGlobal.BOQ_DEFAULT_COOKIE + " 상세 정보 조회 실패";
                     _isLogin = false;
@@ -78,7 +79,8 @@ namespace bill.payletter.com.Session
                 _strUserName = pl_arrCookieInfo[2];
                 _strPhoneNo  = pl_arrCookieInfo[3];
                 Int16.TryParse(pl_arrCookieInfo[4], out _intUserAuth);
-                Int16.TryParse(pl_arrCookieInfo[5], out _intStateCode);
+                Int16.TryParse(pl_arrCookieInfo[5], out _intUserRole);
+                Int16.TryParse(pl_arrCookieInfo[6], out _intStateCode);
 
                 if (!_intUserNo.Equals(0) && !string.IsNullOrEmpty(_strUserID))
                 {
@@ -163,6 +165,7 @@ namespace bill.payletter.com.Session
             _strPhoneNo  = string.Empty;
 
             _intUserAuth = 0;
+            _intUserRole = 0;
             _intStateCode = 0;
 
             return;
@@ -248,6 +251,10 @@ namespace bill.payletter.com.Session
         public Int16 intUserAuth
         {
             get { return _intUserAuth; }
+        }
+        public Int16 intUserRole
+        {
+            get { return _intUserRole; }
         }
         public Int16 intStateCode
         {
