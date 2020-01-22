@@ -20,18 +20,11 @@ public partial class JoinForm : PageBase
             return UserGlobal.GetAjaxTicket(Request);
         }
     }
-    protected string strUserCookie                      //사용자 쿠키
+    protected string strLoginUrl                        //로그인 Url
     {
         get
         {
-            return UserGlobal.BOQ_DEFAULT_COOKIE;
-        }
-    }
-    protected string strSaveIDCookie                    //로그인 아이디 저장 쿠키
-    {
-        get
-        {
-            return UserGlobal.BOQ_SAVEID_COOKIE;
+            return UserGlobal.BOQ_LOGIN_URL;
         }
     }
     protected string strIndexUrl                        //인덱스 Url

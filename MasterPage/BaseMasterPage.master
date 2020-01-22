@@ -88,7 +88,8 @@
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="/src/Login/Logout.aspx">Logout</a></li>
                                 <%} else {%>
-                                <li class="nav-item active"><a class="nav-link" href="/src/Join/JoinForm.aspx">회원 가입</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/src/Login/LoginForm.aspx">로그인</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/src/Login/JoinForm.aspx">회원 가입</a></li>
                                 <%} %>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
