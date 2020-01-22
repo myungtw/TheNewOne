@@ -25,11 +25,11 @@ public partial class MyFamilyEvent : PageBase
         }
     }
 
-    protected string strMyFamilyEventUrl
+    protected string strLoginUrl
     {
         get
         {
-            return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
+            return UserGlobal.BOQ_LOGIN_URL;
         }
     }
 
@@ -42,6 +42,14 @@ public partial class MyFamilyEvent : PageBase
     }
 
     protected Int64  intFamilyEventNo       = 0;
+    
+    protected string strEncFamilyEventNo
+    {
+        get
+        {
+            return UserGlobal.GetEncryptStr(Request.QueryString["familyeventno"]);
+        }
+    }
 
     ///-----------------------------------------------------
     /// <summary>

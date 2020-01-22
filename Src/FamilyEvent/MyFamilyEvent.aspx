@@ -6,7 +6,7 @@
 <script type="text/javascript">
     var familyEventNo    = <%=intFamilyEventNo %>;
     var loginUserNo      = <%=intUserNo %>;
-    var myFamilyEventUrl = "<%=string.Format("{0}?FamilyEventNo={1}", strMyFamilyEventUrl, intFamilyEventNo) %>";
+    var myFamilyEventUrl = "<%=string.Format("{0}?encfamilyeventno={1}", strLoginUrl, strEncFamilyEventNo) %>";
     var qrcode;
     var qrcodeTitle;
 
@@ -95,18 +95,20 @@
     //QR코드 발급 열기
     function fnOpenQRCode(){
         //QRCode 제목 지정
-        $("#spQRCodeTitle").html("QR 코드 발급 (" + qrcodeTitle + ")");
+        $("#spQRCodeTitle").html("QR 코드 발급<br/>(" + qrcodeTitle + ")");
 
         //QRCode 그리기
         if(qrcode == null){
             qrcode = new QRCode("divQRCode", {
                 text: myFamilyEventUrl,
-                width: "250",
-                height: "250",
+                width: "190",
+                height: "190",
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.L
             });
+            
+            $("#divQRCode").find("img").attr("style", "text-align:center");
         }
 
         $("#qrcode-modal").modal('show');
@@ -311,8 +313,7 @@
                             <%--QRCode 노출 부분--%>
                             <div class="container">
                                 <div class="welcome_img">
-                                    <img src="/DesignTemplate/img/qrCode.png" alt=""/>
-                                        <div id="divQRCode" class="qr-code" style="position: relative; top: -325px; left: 75px;"></div>
+                                    <div id="divQRCode" class="qr-code"></div>
                                 </div>
                             </div>
                             <a onclick="fnCloseQRCode()" class="qrcode-modal__close"><span class="qrcode-modal__close-text">close</span></a>
