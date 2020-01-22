@@ -107,15 +107,17 @@ public class FacilityTicketHandler : AshxBaseHandler
             pl_objDas.CodePage = 0;
 
             pl_objDas.AddParam("@pi_intUserNo",                DBType.adInteger, objSes.intUserNo,                  0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intUserID",                DBType.adVarChar, DBNull.Value,                      0,   ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intFacilityTicketType",    DBType.adTinyInt, objReq.intFacilityTicketType,      0,   ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intFacilityTicketAmount",  DBType.adInteger, objReq.intFacilityTicketAmount,    0,   ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intFacilityTicketRegType", DBType.adTinyInt, objReq.intFacilityTicketRegType,   0,   ParameterDirection.Input);
-            pl_objDas.AddParam("@pi_intFamilyEventNo",         DBType.adBigInt,  objReq.intFamilyEventNo,           0,   ParameterDirection.Input);
 
+            pl_objDas.AddParam("@pi_intFamilyEventNo",         DBType.adBigInt,  objReq.intFamilyEventNo,           0,   ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intJoinMstCategory",       DBType.adInteger, objReq.intJoinMstCategory,         0,   ParameterDirection.Input);
             pl_objDas.AddParam("@po_strErrMsg",                DBType.adVarChar, DBNull.Value,                      256, ParameterDirection.Output);
             pl_objDas.AddParam("@po_intRetVal",                DBType.adInteger, DBNull.Value,                      0,   ParameterDirection.Output);
             pl_objDas.AddParam("@po_strDBErrMsg",              DBType.adVarChar, DBNull.Value,                      256, ParameterDirection.Output);
+
             pl_objDas.AddParam("@po_intDBRetVal",              DBType.adInteger, DBNull.Value,                      0,   ParameterDirection.Output);
 
             pl_objDas.SetQuery("dbo.UP_FACILITY_TICKET_TX_INS");
