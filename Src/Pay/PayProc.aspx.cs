@@ -11,6 +11,7 @@ public partial class PayProc : PageBase
     private int    pb_intJoinSubCategory { get { return Convert.ToInt32(Request.Form["joinSubCategory"]); } }
     private int    pb_intPaytool         { get { return Convert.ToInt32(Request.Form["paytool"]); } }
     private string pb_strPGCode          { get { return Request.Form["pgCode"].ToString(); } }
+    private string pb_strPaytoolName     { get { return Request.Form["paytoolName"].ToString(); } }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,7 +21,7 @@ public partial class PayProc : PageBase
         {
             InsPGPayLog(out strErrMsg);
         }
-        Response.Redirect("/Src/Pay/PayResult.aspx");
+        Response.Redirect("/Src/Pay/PayResult.aspx?familyeventno="+pb_intEventNo);
     }
     public int InsPGPayLog(out string strErrMsg)
     {
@@ -32,7 +33,6 @@ public partial class PayProc : PageBase
 
         try
         {
-            // 현금 영수증 정보 암호화
             pl_objDas = new IDas();
             pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
             pl_objDas.CommandType = CommandType.StoredProcedure;
@@ -46,10 +46,11 @@ public partial class PayProc : PageBase
 
 	        pl_objDas.AddParam("@pi_strPGCode",          DBType.adVarChar, pb_strPGCode,          50,  ParameterDirection.Input);
 	        pl_objDas.AddParam("@pi_intPayTool",         DBType.adTinyInt, pb_intPaytool,         0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strPayToolName",     DBType.adVarChar, pb_strPaytoolName,     50,  ParameterDirection.Input);
 	        pl_objDas.AddParam("@po_strErrMsg",          DBType.adVarChar, DBNull.Value,          256, ParameterDirection.Output);
 	        pl_objDas.AddParam("@po_intRetVal",          DBType.adInteger, DBNull.Value,          0,   ParameterDirection.Output);
-	        pl_objDas.AddParam("@po_strDBErrMsg",        DBType.adVarChar, DBNull.Value,          256, ParameterDirection.Output);
 
+	        pl_objDas.AddParam("@po_strDBErrMsg",        DBType.adVarChar, DBNull.Value,          256, ParameterDirection.Output);
 	        pl_objDas.AddParam("@po_intDBRetVal",        DBType.adInteger, DBNull.Value,          0,   ParameterDirection.Output);
 	        pl_objDas.SetQuery("dbo.UP_PAYMENT_TX_INS");
 

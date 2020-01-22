@@ -23,6 +23,13 @@ public partial class FamilyEventIndex : PageBase
             return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
         }
     }
+    protected string strFacilityTicketHoldUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_FACILITY_TICKET_HOLD_URL;
+        }
+    }
 
     ///-----------------------------------------------------
     /// <summary>
@@ -44,5 +51,7 @@ public partial class FamilyEventIndex : PageBase
     ///-----------------------------------------------------
     protected void Page_Load(object sender, EventArgs e)
     {
+        ((BaseMasterPage)Page.Master).mainTitle = "경조사 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "전체 경조사";
     }
 }

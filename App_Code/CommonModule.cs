@@ -163,15 +163,17 @@ namespace bill.payletter.com.CommonModule
 
         #region Url 정보
         //인덱스 Url
-        public static string    BOQ_INDEX_URL               = "/Src/FamilyEvent/FamilyEventIndex.aspx"; //인덱스 페이지
+        public static string    BOQ_INDEX_URL               = "/Src/FamilyEvent/FamilyEventIndex.aspx";                 //인덱스 페이지
 
         //로그인 관련 Url
-        public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";              //로그인 폼 페이지
-        public static string    BOQ_LOGOUT_URL              = string.Empty;                             //로그아웃 페이지
+        public static string    BOQ_LOGIN_URL               = "/Src/Login/LoginForm.aspx";                              //로그인 폼 페이지
+        public static string    BOQ_LOGOUT_URL              = string.Empty;                                             //로그아웃 페이지
 
         //이벤트 관련 Url
-        public static string    BOQ_FAMILYEVENT_INDEX_URL       = "/Src/FamilyEvent/FamilyEventIndex.aspx";      //이벤트 Index 페이지
-        public static string    BOQ_FAMILYEVENT_MYEVENT_URL     = "/Src/FamilyEvent/MyFamilyEvent.aspx";         //내 이벤트 페이지
+        public static string    BOQ_FAMILYEVENT_INDEX_URL       = "/Src/FamilyEvent/FamilyEventIndex.aspx";             //이벤트 Index 페이지
+        public static string    BOQ_FAMILYEVENT_MYEVENT_URL     = "/Src/FamilyEvent/MyFamilyEvent.aspx";                //내 이벤트 페이지
+        public static string    BOQ_FACILITY_TICKET_HOLD_URL    = "/Src/FacilityTicket/FacilityTicketHoldList.aspx";    //보유 시설 이용권 페이지
+        public static string    BOQ_FACILITY_TICKET_USE_URL     = "/Src/FacilityTicket/FacilityTicketUse.aspx";         //시설 이용권 사용 페이지
         #endregion
 
         static UserGlobal()
@@ -193,6 +195,8 @@ namespace bill.payletter.com.CommonModule
                     
                     BOQ_FAMILYEVENT_INDEX_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_INDEX_URL);
                     BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
+                    BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
+                    BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
                     BOQ_SHA256_REQ_KEY          = GetDecryptStr(ConfigurationManager.AppSettings["BOQ_SHA256_REQ_KEY_PAY"]);
@@ -216,6 +220,11 @@ namespace bill.payletter.com.CommonModule
                     BOQ_DEFAULT_DOMAIN          = "http://dev.familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
+                    
+                    BOQ_FAMILYEVENT_INDEX_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_INDEX_URL);
+                    BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
+                    BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
+                    BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
 
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
@@ -237,9 +246,14 @@ namespace bill.payletter.com.CommonModule
                     //BOQ_SAVEID_COOKIE           = BOQ_SAVEID_COOKIE;
                     #endregion
                     
-                    BOQ_DEFAULT_DOMAIN          = "http://bill.com";
+                    BOQ_DEFAULT_DOMAIN          = "http://familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
+                    
+                    BOQ_FAMILYEVENT_INDEX_URL   = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_INDEX_URL);
+                    BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
+                    BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
+                    BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
 
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_REAL"]);

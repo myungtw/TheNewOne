@@ -70,7 +70,7 @@ public class FamilyEventHandler : AshxBaseHandler
 
             if (!pl_intRetVal.Equals(0))
             {
-                UtilLog.WriteLog("GetFamilyEventHoldList", pl_intRetVal, strErrMsg);
+                UtilLog.WriteLog("GetMyFamilyEventHoldList", pl_intRetVal, strErrMsg);
             }
         }
 
@@ -481,7 +481,7 @@ public class FamilyEventHandler : AshxBaseHandler
 
             if (!pl_intRetVal.Equals(0))
             {
-                UtilLog.WriteLog("GetFamilyEventHoldList", pl_intRetVal, strErrMsg);
+                UtilLog.WriteLog("GetInvitedFamilyEventHoldList", pl_intRetVal, strErrMsg);
             }
         }
 

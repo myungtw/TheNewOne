@@ -1,7 +1,7 @@
 ﻿using bill.payletter.com.CommonModule;
 using System;
 
-public partial class Src_MyEventSample : System.Web.UI.Page
+public partial class Src_MyEventSample : PageBase
 {
     protected string strInvitationUrl
     {

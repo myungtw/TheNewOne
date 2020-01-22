@@ -106,7 +106,6 @@ public class LoginHandler : AshxBaseHandler
     //로그인 요청 클래스
     public class VerifyLoginReqParam : DefaultReqParam
     {
-        public Int16    intSiteCode         { get; set; }
         public string   strI                { get; set; }
         public string   strP                { get; set; }
         public bool     blnSave             { get; set; }
@@ -335,6 +334,86 @@ public class LoginHandler : AshxBaseHandler
         }
 
         return pl_intRetVal;
+    }
+    #endregion
+
+        
+
+    #region 회원가입
+    //-------------------------------------------------------------
+    /// <summary>
+    /// 회원가입
+    /// </summary>
+    //-------------------------------------------------------------
+    [MethodSet(loggingFlag = false, pageType = PageAccessType.Everyone)]
+    private int Join(JoinReqParam objReqParam, DefaultResParam objResParam, out string strErrMsg)
+    {
+        int    pl_intRetVal         = 0;
+        IDas   pl_objDas            = null;
+
+        strErrMsg = string.Empty;
+
+        try
+        {
+            //시설이용권 발급
+            pl_objDas = new IDas();
+            pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+            pl_objDas.CommandType = CommandType.StoredProcedure;
+            pl_objDas.CodePage = 0;
+
+            pl_objDas.AddParam("@pi_strUserId",       DBType.adVarChar,  objReqParam.strUserId,                                 0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strUserPwd",      DBType.adVarChar,  UserGlobal.GetEncryptStr(objReqParam.strUserPwd),      0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strUserName",     DBType.adVarWChar, objReqParam.strUserName,                               0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strUserPhoneNo",  DBType.adVarChar,  UserGlobal.GetEncryptStr(objReqParam.strUserPhoneNo),  0,   ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intUserAuth",     DBType.adTinyInt,  1,                                                     0,   ParameterDirection.Input);
+        
+            pl_objDas.AddParam("@po_intUserNo",       DBType.adVarChar,  DBNull.Value,                                          256, ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strErrMsg",       DBType.adVarChar,  DBNull.Value,                                          256, ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intRetVal",       DBType.adInteger,  DBNull.Value,                                          0,   ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDBErrMsg",     DBType.adVarChar,  DBNull.Value,                                          256, ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intDBRetVal",     DBType.adInteger,  DBNull.Value,                                          0,   ParameterDirection.Output);
+
+            pl_objDas.SetQuery("dbo.UP_USER_TX_INS");
+            if (!pl_objDas.LastErrorCode.Equals(0))
+            {
+                pl_intRetVal = pl_objDas.LastErrorCode;
+                strErrMsg    = pl_objDas.LastErrorMessage;
+                return pl_intRetVal;
+            }
+
+	        strErrMsg    = pl_objDas.GetParam("@po_strErrMsg");
+	        pl_intRetVal = Convert.ToInt32(pl_objDas.GetParam("@po_intRetVal"));
+        }
+        catch (Exception pl_objEx)
+        {
+            pl_intRetVal = 1100;
+            strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+            UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+        }
+        finally
+        {
+            if (pl_objDas != null)
+            {
+                pl_objDas.Close();
+                pl_objDas = null;
+            }
+
+            if (!pl_intRetVal.Equals(0))
+            {
+                UtilLog.WriteLog("Join", pl_intRetVal, strErrMsg);
+            }
+        }
+
+        return pl_intRetVal;
+    }
+
+    //회원 가입 요청 클래스
+    public class JoinReqParam : DefaultReqParam
+    {
+        public string   strUserId       { get; set; }
+        public string   strUserPwd      { get; set; }
+        public string   strUserName     { get; set; }
+        public string   strUserPhoneNo  { get; set; }
     }
     #endregion
 }

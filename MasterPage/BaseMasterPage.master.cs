@@ -5,6 +5,8 @@ using bill.payletter.com.Session;
 public partial class BaseMasterPage : System.Web.UI.MasterPage
 {
     protected UserSession objSes;            //판매 세션
+    public string mainTitle = string.Empty;
+    public string subTitle  = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {

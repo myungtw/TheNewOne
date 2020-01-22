@@ -10,6 +10,7 @@
                     return;
                 }
                 $("input[name=pgCode]").val($("input[name=paytool]:checked").data("pgcode"));
+                $("input[name=paytoolName]").val($("input[name=paytool]:checked").data("paytoolname"));
                 $("#form1").attr("action", "/Src/Pay/POQ.aspx");
                 $("#form1").submit();
             });
@@ -152,7 +153,7 @@
                          + "    <div class='switch-wrap d-flex justify-content-between'>"
                          + "        <p><label for='paytool" + i + "'>" + objDT[i].PAYTOOLNAME + "</label></p>"
                          + "        <div class='primary-radio'>"
-                         + "            <input type='radio' id='paytool" + i + "' name='paytool' data-pgcode='"+objDT[i].PGCODE+"' value='" + objDT[i].PAYTOOL + "' ";
+                         + "            <input type='radio' id='paytool" + i + "' name='paytool' data-paytoolname='" + objDT[i].PAYTOOLNAME + "' data-pgcode='" + objDT[i].PGCODE + "' value='" + objDT[i].PAYTOOL + "' ";
                     if (i == 0) {
                         html += "checked='checked'>"
                     }
@@ -177,6 +178,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <input type="hidden" name="eventNo" value="<%=FamilyEventNo %>" />
     <input type="hidden" name="pgCode"  value="" />
+    <input type="hidden" name="paytoolName"  value="" />
     <div class="whole-wrap">
         <div class="container">
         	<div class="section-top-border">

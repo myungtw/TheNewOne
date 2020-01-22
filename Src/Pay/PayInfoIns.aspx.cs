@@ -47,7 +47,8 @@ public partial class PayInfoIns : PageBase
     //-------------------------------------------------------------
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ((BaseMasterPage)Page.Master).mainTitle = "결제 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "결제 정보입력";
     }
 
 }
