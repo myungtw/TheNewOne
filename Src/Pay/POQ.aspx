@@ -226,7 +226,7 @@ select#eco {}
 	.st01[type='checkbox'] + label:before {width:20px;height:20px;margin-top:-10px;border-radius:3px;}
 	.st01[type='checkbox'] + label.other-line:before, .st01[type='radio'] + label.other-line:before {top:0;margin-top:0;}
 	/*.st01[type='checkbox']:disabled + label:before {border-color:#d5d5d5;background:transparent;}*/
-	.st01[type='checkbox']:checked + label:after {left:3px;width:14px;height:10px;margin-top:-5px;border:none;background:url('../img/ico_chk.png') no-repeat;background-size:14px 10px;}
+	.st01[type='checkbox']:checked + label:after {left:3px;width:14px;height:10px;margin-top:-5px;border:none;background:url('/DesignTemplate/img/elements/ico_chk.png') no-repeat;background-size:14px 10px;}
 	.st01[type='checkbox']:checked + label.other-line:after {top:0;margin-top:5px;}
 	/* for radio */
 	.st01[type='radio'] + label {padding-left:24px;}
@@ -254,8 +254,8 @@ select#eco {}
 		position:absolute;left:0;top:0;width:100%;height:36px;padding:0px 0 0 30px;font-size:16px;white-space:nowrap;letter-spacing:-0.1em;color:#cecdc9;line-height: 36px;}
 	.age_ni{color:#676767;margin:15px 0 5px;}
 	.field .inp-st, .field select {overflow:hidden;width:100%;height:36px;padding:0 25px 0 30px;font-size:16px;letter-spacing:0em;background:transparent;}
-	.field select {padding-left:17px;font-size:15px;background:url('../img/bg_select_arrow.png') 100% 50% no-repeat;background-size:23px 6px;}
-	.field.active select {padding-left:17px;font-size:15px;background:url('../img/bg_select_arrow_active.png') 100% 50% no-repeat;background-size:23px 6px;}
+	.field select {padding-left:17px;font-size:15px;background:url('/DesignTemplate/img/elements/bg_select_arrow.png') 100% 50% no-repeat;background-size:23px 6px;}
+	.field.active select {padding-left:17px;font-size:15px;background:url('/DesignTemplate/img/elements/bg_select_arrow.png') 100% 50% no-repeat;background-size:23px 6px;}
 	.field.one-field .inp-st {padding-left:0;}
 	.field.one-txt {width:72px;max-width:72px;min-width:72px;text-align:center;}
 	.field.sec-txt-set {width:112px;max-width:112px;min-width:112px;}
@@ -277,7 +277,7 @@ select#eco {}
 		display:block;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;
 		position:absolute;left:0;top:0;width:100%;height:36px;padding:0px 0 0 30px;font-size:16px;white-space:nowrap;letter-spacing:-0.1em;color:#cecdc9;line-height: 36px;}
 	.field2 .inp-st, .field2 select {overflow:hidden;width:100%;height:36px;padding:0 25px 0 30px;/*line-height:60px;*/font-size:16px;letter-spacing:0em;background:transparent;}
-	.field2 select {padding-left:17px;font-size:15px;background:url('../img/bg_select_arrow.png') 100% 50% no-repeat;background-size:23px 6px;}
+	.field2 select {padding-left:17px;font-size:15px;background:url('/DesignTemplate/img/elements/bg_select_arrow.png') 100% 50% no-repeat;background-size:23px 6px;}
 	.field2.one-field .inp-st {padding-left:0;}
 	.field2.one-txt {width:72px;max-width:72px;min-width:72px;text-align:center;}
 	.field2.sec-txt-set {width:112px;max-width:112px;min-width:112px;}
@@ -537,11 +537,11 @@ select#eco {}
 	.header-grp .payletter {background-image:url('../img/xhdpi/bi_payletter.png');}
 	.header-grp .payletter_k {background-image:url('../img/xhdpi/bi_payletter_k.png');}
 /* form check & radio style */
-	.st01[type='checkbox']:checked + label:after {background-image:url('../img/xhdpi/ico_chk.png');}
+	.st01[type='checkbox']:checked + label:after {background-image:url('/DesignTemplate/img/elements/ico_chk.png');}
 /* form group */
-	.field select {background-image:url('../img/xhdpi/bg_select_arrow.png');}
+	.field select {background-image:url('/DesignTemplate/img/elements/bg_select_arrow.png');}
 	/*.field.active select {background:url('../img/xhdpi/bg_select_arrow_active.png') 100% 50% no-repeat;}*/
-	.field.active select {background: url(../img/bg_select_arrow_active.png) 100% 50% no-repeat;} 
+	.field.active select {background: url('/DesignTemplate/img/elements/bg_select_arrow.png') 100% 50% no-repeat;} 
 
 	.row-wrap {display:-moz-box;display:-webkit-box;display:-ms-flexbox;display:box;}
 	.row-wrap .row, .row-wrap .btn-row {display:block;-moz-box-flex:1.0;-webkit-box-flex:1.0;-ms-flex:1.0;box-flex:1.0; width:50%; }
@@ -784,6 +784,7 @@ body {font-size:12px;line-height:16px;}
                     $("#btnOk").on("click", function () {
                         $("#<%=form1.ClientID%>").submit();
                     });
+            $("#all-agree").on("click", function () { $("input:checkbox").each(function(){this.checked=true;}); });
         });
     </script>
 
@@ -897,8 +898,7 @@ body {font-size:12px;line-height:16px;}
                     </div>
                     <div class="row" id="divHp">
                         <span class="field">
-                            <label for="hp">- 없이 휴대폰번호 입력</label>
-                            <input type="tel" id="hp" class="inp-st numberOnly" maxlength="11" autocomplete="off" required="required" data-required-msg="휴대폰 번호를 정확하게 입력해주세요."  data-required-format="^01([016789]?)-?([0-9]{3,4})-?([0-9]{4})$" /> 
+                            <input type="tel" id="hp" class="inp-st numberOnly" maxlength="11" autocomplete="off" required="required" data-required-msg="휴대폰 번호를 정확하게 입력해주세요." placeholder="- 없이 휴대폰번호 입력" data-required-format="^01([016789]?)-?([0-9]{3,4})-?([0-9]{4})$" /> 
                         </span>
                     </div>	
                 </div>
