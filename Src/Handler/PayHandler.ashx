@@ -100,28 +100,21 @@ public class PayHandler : AshxBaseHandler
         {
             if (pl_objDas != null)
             {
-                UtilLog.WriteLog("PaytoolLst", pl_intRetVal, strErrMsg);
+                pl_objDas.Close();
+                pl_objDas = null;
             }
         }
 
         return pl_intRetVal;
     }
-    
 
-
-
-
-
-
-
-        
     //-------------------------------------------------------------
     /// <summary>
     /// 회원 별 결제 내역 조회
     /// </summary>
     //-------------------------------------------------------------
     [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
-    private int GetUserPayList(DefaultReqParam objReq, DefaultListResParam objRes, out string strErrMsg)
+    private int GetUserPayList(PayListReqParam objReq, DefaultListResParam objRes, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
         IDas pl_objDas    = null;
@@ -135,6 +128,14 @@ public class PayHandler : AshxBaseHandler
             pl_objDas.CommandType = CommandType.StoredProcedure;
             pl_objDas.CodePage = 0;
 
+            pl_objDas.AddParam("@pi_intUserNo",    DBType.adInteger, objSes.intUserNo,   0, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_dtFromYMD",    DBType.adVarChar, "",                 8, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_dtToYMD",      DBType.adVarChar, "",                 8, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intSeqNo",     DBType.adBigInt,  0,                  0, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intPageNo",    DBType.adInteger, 1,                  0, ParameterDirection.Input);
+
+            pl_objDas.AddParam("@pi_intPageSize",  DBType.adInteger, objReq.intPageSize, 0, ParameterDirection.Input);
+            pl_objDas.AddParam("@po_intRecordCnt", DBType.adInteger, DBNull.Value,       0, ParameterDirection.Output);
             pl_objDas.SetQuery("dbo.UP_USER_PAY_UR_LST");
 
             objRes.intRowCnt = pl_objDas.RecordCount;
@@ -162,5 +163,10 @@ public class PayHandler : AshxBaseHandler
     public class EventPayReqParam : DefaultReqParam
     {
         public int   intFamilyEventNo     { get; set; }
+    }
+
+    public class PayListReqParam : DefaultReqParam
+    {
+        public int intPageSize { get; set; }
     }
 }

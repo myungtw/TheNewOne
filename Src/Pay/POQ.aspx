@@ -782,6 +782,10 @@ body {font-size:12px;line-height:16px;}
                     document.getElementById("paytype06").style.display = "none";
                     document.getElementById("paytype06_label").style.display = "none";
                     $("#btnOk").on("click", function () {
+                        if ($("input[type=checkbox]:not(:checked)").length > 0) {
+                            alert("필수 동의 항목을 모두 동의하셔야 다음 진행을 하실 수 있습니다.");
+                            return false;
+                        }
                         $("#<%=form1.ClientID%>").submit();
                     });
             $("#all-agree").on("click", function () { $("input:checkbox").each(function(){this.checked=true;}); });
@@ -815,16 +819,16 @@ body {font-size:12px;line-height:16px;}
             <div class="simple-pay-history">
                 <dl>
                     <dt>제품명</dt>
-                    <dd>&#51068;&#48152; (&#44592;&#44036;&#51228;)</dd>
+                    <dd>축의금 (<%=string.Format("{0:#,##0}", Convert.ToInt32(Request.Form["payAmt"]))+"원" %>)</dd>
                 </dl>
                 <dl>
                     <dt>결제금액</dt>
-                    <dd><!--em>(VAT 포함)</em--> <strong>3,000</strong> <span>원</span></dd>
+                    <dd><!--em>(VAT 포함)</em--> <strong><%=string.Format("{0:#,##0}", Convert.ToInt32(Request.Form["payAmt"])) %></strong> <span>원</span></dd>
                 </dl>
                 
                 <dl>
                     <dt>결제일자</dt>
-                    <dd>2020.01.09</dd>
+                    <dd><%=DateTime.Now.ToString("yyyy.MM.dd") %></dd>
                 </dl>            
                 
             </div>
