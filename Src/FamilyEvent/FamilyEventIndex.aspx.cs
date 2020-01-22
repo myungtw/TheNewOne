@@ -23,6 +23,13 @@ public partial class FamilyEventIndex : PageBase
             return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
         }
     }
+    protected string strFacilityTicketHoldUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_FACILITY_TICKET_HOLD_URL;
+        }
+    }
 
     ///-----------------------------------------------------
     /// <summary>

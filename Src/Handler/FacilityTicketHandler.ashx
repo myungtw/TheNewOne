@@ -91,7 +91,7 @@ public class FacilityTicketHandler : AshxBaseHandler
     /// 시설이용권 발급
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login)]
     private int InsFacilityTicket(ReqInsFacilityTicketParam objReq, DefaultResParam objRes, out string strErrMsg)
     {
         int  pl_intRetVal   = 0;
@@ -170,7 +170,7 @@ public class FacilityTicketHandler : AshxBaseHandler
     /// 시설이용권 사용
     /// </summary>
     //-------------------------------------------------------------
-    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login)]
     private int UseFacilityTicket(ReqUseFacilityTicketParam objReq, DefaultResParam objRes, out string strErrMsg)
     {
         int  pl_intRetVal = 0;

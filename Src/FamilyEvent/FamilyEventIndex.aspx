@@ -55,8 +55,8 @@
             html += "       </div>";
             html += "       <div class='pp_footer'>";                            
             html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";                        
-            html += "           <a class='main_btn' href='#'>결제 하러가기</a>";  
-            html += "           <a class='genric-btn info' href='#'>시설이용권 사용</a>";          
+            html += "           <a class='main_btn' href='#'>경조사 관리</a>";  
+            html += "           <a class='genric-btn info' href='#'>시설이용권 발급</a>";          
             html += "       </div>";
             html += "   </div>";
             html += "  </div>";
@@ -117,7 +117,7 @@
             html += "       <div class='pp_footer'>";                            
             html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";
             html += "           <a class='main_btn' href='#'>결제 하러가기</a>";
-            html += "           <a class='genric-btn info' href='#'>시설이용권 사용</a>";
+            html += "           <a class='genric-btn info' href='javascript:fnFacilityTicketHoldList(" + objRet[i].FAMILYEVENTNO + ");'>시설이용권 사용</a>";
             html += "       </div>";
             html += "   </div>";
             html += "  </div>";
@@ -125,6 +125,12 @@
         }
 
         $("#divInvitedEventHoldList").html(html);
+    }
+
+    //보유 시설이용권 정보
+    function fnFacilityTicketHoldList(familyEventNo) {
+        var url = '<%=strFacilityTicketHoldUrl %>' + "?familyeventno=" + familyEventNo;
+        window.document.location = url;
     }
 
 </script>

@@ -1,7 +1,7 @@
 ﻿using System;
 using bill.payletter.com.CommonModule;
 
-public partial class FacilityTicketHoldList : PageBase
+public partial class FacilityTicketUse : PageBase
 {
     protected string AjaxTicket
     {
@@ -10,18 +10,11 @@ public partial class FacilityTicketHoldList : PageBase
             return UserGlobal.GetAjaxTicket(Request);
         }
     }
-    protected string FamilyEventNo
+    protected string FacilityTicketNo
     {
         get
         {
-            return Request.QueryString["familyeventno"];
-        }
-    }
-    protected string FacilityTicketUseUrl
-    {
-        get
-        {
-            return UserGlobal.BOQ_FACILITY_TICKET_USE_URL;
+            return Request.QueryString["facilityticketno"];
         }
     }
 
