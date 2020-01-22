@@ -202,33 +202,37 @@ public class FamilyEventHandler : AshxBaseHandler
             pl_objDas.CommandType = CommandType.StoredProcedure;
             pl_objDas.CodePage = 0;
 
-            pl_objDas.AddParam("@pi_intFamilyEventNo",      DBType.adBigInt,    objReqParam.intFamilyEventNo,   0,      ParameterDirection.Input);
-            pl_objDas.AddParam("@po_intFamilyEventCode",    DBType.adTinyInt,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strFamilyEventName",    DBType.adVarWChar,  DBNull.Value,                   200,    ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intGroomUserNo",        DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intBrideUserNo",        DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@pi_intFamilyEventNo",      DBType.adBigInt,      objReqParam.intFamilyEventNo,   0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intUserNo",             DBType.adInteger,     objSes.intUserNo,               0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@po_intFamilyEventCode",    DBType.adTinyInt,     DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strFamilyEventName",    DBType.adVarWChar,    DBNull.Value,                   200,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intHallNo",             DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
 
-            pl_objDas.AddParam("@po_intHallNo",             DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intHallDtlNo",          DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strHallName",           DBType.adVarWChar,  DBNull.Value,                   200,    ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strHallAddress",        DBType.adVarWChar,  DBNull.Value,                   500,    ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strHallPhoneNo",        DBType.adVarChar,   DBNull.Value,                   100,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strHallName",           DBType.adVarWChar,    DBNull.Value,                   200,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strHallAddress",        DBType.adVarWChar,    DBNull.Value,                   500,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strHallPhoneNo",        DBType.adVarChar,     DBNull.Value,                   100,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intRoomNo",             DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strRoomName",           DBType.adVarWChar,    DBNull.Value,                   200,    ParameterDirection.Output);
 
-            pl_objDas.AddParam("@po_strFamilyEventDate",    DBType.adVarChar,   DBNull.Value,                   19,     ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strStartDate",          DBType.adVarChar,   DBNull.Value,                   19,     ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strEndDate",            DBType.adVarChar,   DBNull.Value,                   19,     ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intMinAmount",          DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intMaxFacilityTicket",  DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strRoomImgUrl",         DBType.adVarWChar,    DBNull.Value,                   200,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strFamilyEventDate",    DBType.adVarWChar,    DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDisplayStartDate",   DBType.adVarWChar,    DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDisplayEndDate",     DBType.adVarWChar,    DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intHostUserNo",         DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
 
-            pl_objDas.AddParam("@po_intAdminNo",            DBType.adInteger,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intStateCode",          DBType.adTinyInt,   DBNull.Value,                   0,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strRegDate",            DBType.adVarChar,   DBNull.Value,                   19,     ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strUpdDate",            DBType.adVarChar,   DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intAdminNo",            DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intStateCode",          DBType.adTinyInt,     DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_mnyMinPayAmt",          DBType.adVarWChar,    DBNull.Value,                   100,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intMaxFoodTicket",      DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intMaxParkingTicket",   DBType.adInteger,     DBNull.Value,                   0,      ParameterDirection.Output);
 
-            pl_objDas.AddParam("@po_strErrMsg",             DBType.adVarChar,   DBNull.Value,                   256,    ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intRetVal",             DBType.adInteger,   DBNull.Value,                   4,      ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strDBErrMsg",           DBType.adVarChar,   DBNull.Value,                   256,    ParameterDirection.Output);
-            pl_objDas.AddParam("@po_intDBRetVal",           DBType.adInteger,   DBNull.Value,                   4,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strRegDate",            DBType.adVarChar,     DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strUpdDate",            DBType.adVarChar,     DBNull.Value,                   19,     ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strErrMsg",             DBType.adVarChar,     DBNull.Value,                   256,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intRetVal",             DBType.adInteger,     DBNull.Value,                   4,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDBErrMsg",           DBType.adVarChar,     DBNull.Value,                   256,    ParameterDirection.Output);
+
+            pl_objDas.AddParam("@po_intDBRetVal",           DBType.adInteger,     DBNull.Value,                   4,      ParameterDirection.Output);
 
             pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_INFO_NT_GET");
 
@@ -249,22 +253,28 @@ public class FamilyEventHandler : AshxBaseHandler
             objResParam.intFamilyEventNo     = objReqParam.intFamilyEventNo;
             objResParam.intFamilyEventCode   = Convert.ToInt16(pl_objDas.GetParam("@po_intFamilyEventCode"));
             objResParam.strFamilyEventName   = pl_objDas.GetParam("@po_strFamilyEventName");
-            objResParam.intGroomUserNo       = Convert.ToInt32(pl_objDas.GetParam("@po_intGroomUserNo"));
-            objResParam.intBrideUserNo       = Convert.ToInt32(pl_objDas.GetParam("@po_intBrideUserNo"));
             objResParam.intHallNo            = Convert.ToInt32(pl_objDas.GetParam("@po_intHallNo"));
-            objResParam.intHallDtlNo         = Convert.ToInt32(pl_objDas.GetParam("@po_intHallDtlNo"));
+
             objResParam.strHallName          = pl_objDas.GetParam("@po_strHallName");
             objResParam.strHallAddress       = pl_objDas.GetParam("@po_strHallAddress");
             objResParam.strHallPhoneNo       = pl_objDas.GetParam("@po_strHallPhoneNo");
+            objResParam.intRoomNo            = Convert.ToInt32(pl_objDas.GetParam("@po_intRoomNo"));
+            objResParam.strRoomName          = pl_objDas.GetParam("@po_strRoomName");
+
+            objResParam.strRoomImgUrl        = pl_objDas.GetParam("@po_strRoomImgUrl");
             objResParam.strFamilyEventDate   = pl_objDas.GetParam("@po_strFamilyEventDate");
-            objResParam.strStartDate         = pl_objDas.GetParam("@po_strStartDate");
-            objResParam.strEndDate           = pl_objDas.GetParam("@po_strEndDate");
-            objResParam.intMinAmount         = Convert.ToDouble(pl_objDas.GetParam("@po_intMinAmount"));
-            objResParam.intMaxFacilityTicket = Convert.ToInt32(pl_objDas.GetParam("@po_intMaxFacilityTicket"));
+            objResParam.strDisplayStartDate  = pl_objDas.GetParam("@po_strDisplayStartDate");
+            objResParam.strDisplayEndDate    = pl_objDas.GetParam("@po_strDisplayEndDate");
+            objResParam.intHostUserNo        = pl_objDas.GetParam("@po_intHostUserNo");
+
             objResParam.intAdminNo           = Convert.ToInt32(pl_objDas.GetParam("@po_intAdminNo"));
             objResParam.intStateCode         = Convert.ToInt16(pl_objDas.GetParam("@po_intStateCode"));
             objResParam.strRegDate           = pl_objDas.GetParam("@po_strRegDate");
             objResParam.strUpdDate           = pl_objDas.GetParam("@po_strUpdDate");
+            objResParam.mnyMinPayAmt         = String.Format("{0:#,###}", Convert.ToDouble(pl_objDas.GetParam("@po_mnyMinPayAmt")));
+
+            objResParam.intMaxFoodTicket     = Convert.ToInt32(pl_objDas.GetParam("@po_intMaxFoodTicket"));
+            objResParam.intMaxParkingTicket  = Convert.ToInt32(pl_objDas.GetParam("@po_intMaxParkingTicket"));
         }
         catch (Exception pl_objEx)
         {
@@ -311,12 +321,20 @@ public class FamilyEventHandler : AshxBaseHandler
         public string strFamilyEventDate   { get; set; }
         public string strStartDate         { get; set; }
         public string strEndDate           { get; set; }
-        public double intMinAmount         { get; set; }
         public int    intMaxFacilityTicket { get; set; }
         public int    intAdminNo           { get; set; }
         public int    intStateCode         { get; set; }
         public string strRegDate           { get; set; }
         public string strUpdDate           { get; set; }
+        public int    intRoomNo            { get; set; }
+        public string strRoomName          { get; set; }
+        public string strRoomImgUrl        { get; set; }
+        public string strDisplayStartDate  { get; set; }
+        public string strDisplayEndDate    { get; set; }
+        public string intHostUserNo        { get; set; }
+        public string mnyMinPayAmt         { get; set; }
+        public int    intMaxParkingTicket  { get; set; }
+        public int    intMaxFoodTicket     { get; set; }
     }
 
     // 가족 이벤트 보유 내역 조회 요청 클래스
@@ -325,11 +343,90 @@ public class FamilyEventHandler : AshxBaseHandler
         public Int64 intEventNo        { get; set; }
         public Int16 intMasterCategory { get; set; }
     }
-
-
-
     #endregion
 
+    #region 이벤트 정보 수정
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
+    private int UpdFamilyEventInfo(UpdFamilyEventInfoReqParam objReqParam, DefaultResParam objResParam, out string strErrMsg)
+    {
+        int  pl_intRetVal = 0;
+        IDas pl_objDas    = null;
+
+        strErrMsg = string.Empty;
+
+        try
+        {
+            pl_objDas = new IDas();
+            pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+            pl_objDas.CommandType = CommandType.StoredProcedure;
+            pl_objDas.CodePage = 0;
+
+            pl_objDas.AddParam("@pi_intFamilyEventNo",         DBType.adBigInt,      objReqParam.intFamilyEventNo,         0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intUserNo",                DBType.adInteger,     objSes.intUserNo,                     0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intLimitPolicyType",       DBType.adTinyInt,     objReqParam.intLimitPolicyType,       0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strLimitPolicyVal",        DBType.adVarWChar,    objReqParam.strLimitPolicyVal,        100,    ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_strLimitPolicyName",       DBType.adVarWChar,    objReqParam.strLimitPolicyName,       200,    ParameterDirection.Input);
+                                                               
+            pl_objDas.AddParam("@pi_intFacilityTicketType",    DBType.adTinyInt,     objReqParam.intFacilityTicketType,    0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@po_strErrMsg",                DBType.adVarChar,     DBNull.Value,                         256,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intRetVal",                DBType.adInteger,     DBNull.Value,                         4,      ParameterDirection.Output);
+            pl_objDas.AddParam("@po_strDBErrMsg",              DBType.adVarChar,     DBNull.Value,                         256,    ParameterDirection.Output);
+            pl_objDas.AddParam("@po_intDBRetVal",              DBType.adInteger,     DBNull.Value,                         4,      ParameterDirection.Output);
+
+            pl_objDas.SetQuery("dbo.UP_FAMILY_EVENT_LIMITPOLICY_TX_UPD");
+
+            if (!pl_objDas.LastErrorCode.Equals(0))
+            {
+                pl_intRetVal = pl_objDas.LastErrorCode;
+                strErrMsg    = pl_objDas.LastErrorMessage;
+
+                return pl_intRetVal;
+            }
+
+            pl_intRetVal = Convert.ToInt32(pl_objDas.GetParam("@po_intRetVal"));
+            if (!pl_intRetVal.Equals(0))
+            {
+                strErrMsg = pl_objDas.GetParam("@po_strErrMsg");
+
+                return pl_intRetVal;
+            }
+        }
+        catch (Exception pl_objEx)
+        {
+            pl_intRetVal = -15220;
+            strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+
+            UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+        }
+        finally
+        {
+            if (pl_objDas != null)
+            {
+                pl_objDas.Close();
+
+                pl_objDas = null;
+            }
+
+            if (!pl_intRetVal.Equals(0))
+            {
+                UtilLog.WriteLog("UpdFamilyEventInfo", pl_intRetVal, strErrMsg);
+            }
+        }
+
+        return pl_intRetVal;
+    }
+
+    // 가족 이벤트 정보 수정 요청 클래스
+    public class UpdFamilyEventInfoReqParam : DefaultReqParam
+    {
+        public int    intFamilyEventNo      { get; set; }
+        public Int16  intLimitPolicyType    { get; set; }
+        public Int16  intFacilityTicketType { get; set; }
+        public string strLimitPolicyVal     { get; set; }
+        public string strLimitPolicyName    { get; set; }
+    }
+
+    #endregion
 
 
     #region 초대받은 이벤트 조회

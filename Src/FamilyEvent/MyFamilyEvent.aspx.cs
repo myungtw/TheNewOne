@@ -16,11 +16,28 @@ public partial class MyFamilyEvent : PageBase
             return UserGlobal.GetAjaxTicket(Request);
         }
     }
+
     protected string strFamilyEventIndexUrl
     {
         get
         {
             return UserGlobal.BOQ_FAMILYEVENT_INDEX_URL;
+        }
+    }
+
+    protected string strMyFamilyEventUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_FAMILYEVENT_MYEVENT_URL;
+        }
+    }
+
+    protected int intUserNo
+    {
+        get
+        {
+            return objSes.intUserNo;
         }
     }
 
