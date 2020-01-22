@@ -84,14 +84,14 @@
 <asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <!--================Header Menu Area =================-->
         
-        <section class="home_banner_area blog_banner">
-            <div class="banner_inner d-flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-		        <div class="container">
-                    <div class="element-wrap">
+    <section class="home_banner_area blog_banner">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+		    <div class="container">
+                <div class="element-wrap">
                     <div class="blog_b_text text-center">
-                    <h1>User Login</h1>
-                    <h2>User</h2>
+                    <h1></h1>
+                    <h2>Login</h2>
                         <div class="login_cont">
                             <div class="mt-10">
 					            <input type="text"     class="single-input"  id="txtID" name="txtID" placeholder="ID를 입력해주세요" />
@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            </div>
-        </section>
+        </div>
+    </section>
 </asp:Content>
 

@@ -246,7 +246,7 @@ namespace bill.payletter.com.CommonModule
                     //BOQ_SAVEID_COOKIE           = BOQ_SAVEID_COOKIE;
                     #endregion
                     
-                    BOQ_DEFAULT_DOMAIN          = "http://bill.com";
+                    BOQ_DEFAULT_DOMAIN          = "http://familyevent.payletter.co.kr";
                     BOQ_LOGIN_URL               = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/LoginForm.aspx");       //retUrl= : 로그인 후 돌아올 현재 페이지
                     BOQ_LOGOUT_URL              = string.Concat(BOQ_DEFAULT_DOMAIN, "/Src/Login/Logout.aspx");
                     
