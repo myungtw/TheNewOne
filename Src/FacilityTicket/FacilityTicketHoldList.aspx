@@ -63,8 +63,8 @@
                     var div = $(this).attr("id");
                     var qrcode = new QRCode(div, {
                         text: "<%=FacilityTicketUseUrl%>?facilityticketno=" + $(this).data("ticketno"),
-                        width: "263",
-                        height: "263",
+                        width: "190",
+                        height: "190",
                         colorDark: "#000000",
                         colorLight: "#ffffff",
                         correctLevel: QRCode.CorrectLevel.L
