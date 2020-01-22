@@ -27,6 +27,7 @@ public partial class FacilityTicketEventDtl : PageBase
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ((BaseMasterPage)Page.Master).mainTitle = "경조사 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "나의 경조사";
     }
 }

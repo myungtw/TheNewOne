@@ -35,7 +35,24 @@
     <script src="/DesignTemplate/js/theme.js"></script>
     <!-- BOQ -->
     <script src="/Lib/BOQ.js?<%=DateTime.Now.ToString("yyyyMMdd") %>"></script>
+    <script>
+        $(document).ready(function () {
+            var menuLinkFlag = false;
+            var html = "";
+            html = "<a href='#'><%=mainTitle%></a>"
+                         + "<a href='#'><%=subTitle%></a>";
+            $("#menuName").html("<%=subTitle%>");
+            $("#pageLink").html(html);
 
+            $(".submenu>a").each(function () {
+
+                if ($(this).text() == "<%=mainTitle%>") {
+                    $(this).closest("li").addClass("active");
+                }
+            });
+
+        });
+    </script>
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -56,16 +73,13 @@
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <%if (objSes.isLogin) {%>
-                                <li class="nav-item active"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">Home</a></li>
                                 <%if (objSes.intUserRole.Equals(1) || objSes.intUserRole.Equals(2)) { %>                                    
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">경조사 관리</a>
                                     <ul class="dropdown-menu">
                                         <%if(objSes.intUserRole.Equals(1)) { %>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">나의 경조사</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">결제/이용 내역</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">환전</a></li>                                        
+                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>                            
                                         <%} else if(objSes.intUserRole.Equals(2)) { %>  
                                         <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>
                                         <%} %> 
@@ -75,15 +89,8 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">결제내역</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">구매내역</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">경조사</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">경조사비</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/src/List/PayList.aspx">결제내역</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/src/List/RefundList.aspx">환전내역</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="/src/Login/Logout.aspx">Logout</a></li>
@@ -104,11 +111,10 @@
                 <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="" style="transform: translateY(-50px);"></div>
                 <div class="container">
                     <div class="banner_content">
-                        <div class="page_link">
-                            <a href="/src/FamilyEvent/FamilyEventIndex.aspx">Home</a>
-                            <a href="gallery.html">Gallery</a>
+                        <div class="page_link" id="pageLink">
+
                         </div>
-                        <h2>About Us</h2>
+                        <h2 id="menuName"></h2>
                     </div>
                 </div>
             </div>

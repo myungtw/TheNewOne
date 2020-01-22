@@ -8,6 +8,9 @@
             $("#payBtn").on("click", function(){
                 location.href="/Src/Pay/PayInfoIns.aspx?familyeventno="+<%=FamilyEventNo%>;
             });
+            $("#facilityBtn").on("click", function(){
+                location.href="/Src/FacilityTicket/FacilityTicketEventDtl.aspx?familyeventno="+<%=FamilyEventNo%>;
+            });
         });
 
 

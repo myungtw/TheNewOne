@@ -39,6 +39,7 @@ public partial class FacilityTicketHoldList : PageBase
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ((BaseMasterPage)Page.Master).mainTitle = "시설이용권 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "보유 시설이용권";
     }
 }

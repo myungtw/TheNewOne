@@ -21,5 +21,7 @@ public partial class PayResult : PageBase
     }
     protected void Page_Load(object sender, EventArgs e)
     {
+        ((BaseMasterPage)Page.Master).mainTitle = "결제관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "결제 결과 확인";
     }
 }

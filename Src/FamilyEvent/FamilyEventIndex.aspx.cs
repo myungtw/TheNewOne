@@ -51,5 +51,7 @@ public partial class FamilyEventIndex : PageBase
     ///-----------------------------------------------------
     protected void Page_Load(object sender, EventArgs e)
     {
+        ((BaseMasterPage)Page.Master).mainTitle = "경조사 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "전체 경조사";
     }
 }
