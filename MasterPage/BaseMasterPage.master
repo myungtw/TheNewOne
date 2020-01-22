@@ -55,15 +55,23 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
+                                <%if (objSes.isLogin) {%>
                                 <li class="nav-item active"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">Home</a></li>
+                                <%if (objSes.intUserRole.Equals(1) || objSes.intUserRole.Equals(2)) { %>                                    
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">경조사 관리</a>
                                     <ul class="dropdown-menu">
+                                        <%if(objSes.intUserRole.Equals(1)) { %>
                                         <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">나의 경조사</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">결제/이용 내역</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">환전</a></li>                                        
+                                        <%} else if(objSes.intUserRole.Equals(2)) { %>  
+                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>
+                                        <%} %> 
                                     </ul>
-                                </li>                              
+                                </li>
+                                <%} %>                           
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">
@@ -79,6 +87,9 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="/src/Login/Logout.aspx">Logout</a></li>
+                                <%} else {%>
+                                <li class="nav-item active"><a class="nav-link" href="/src/Join/JoinForm.aspx">회원 가입</a></li>
+                                <%} %>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>

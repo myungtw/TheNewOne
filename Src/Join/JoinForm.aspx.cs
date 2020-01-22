@@ -4,14 +4,14 @@ using bill.payletter.com.CommonModule;
 
 ///================================================================
 /// <summary>
-/// FileName       : LoginForm.aspx
-/// Description    : 로그인 폼
+/// FileName       : JoinForm.aspx
+/// Description    : 회원가입 폼
 /// Copyright 2019 by PayLetter Inc. All rights reserved.
 /// Author         : tumyeong@payletter.com, 2019-09-03
 /// Modify History : Just Created.
 /// </summary>
 ///================================================================
-public partial class LoginForm : PageBase
+public partial class JoinForm : PageBase
 {
     protected string AjaxTicket
     {

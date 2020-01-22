@@ -26,13 +26,14 @@ public class LoginHandler : AshxBaseHandler
     /// </summary>
     //-------------------------------------------------------------
     [MethodSet(loggingFlag = false, pageType = PageAccessType.Everyone)]
-    private int VerifyLogin(VerifyLoginReqParam objReqParam, VerifyLoginResParam objResParam, out string strErrMsg)
+    private int VerifyLogin(VerifyLoginReqParam objReqParam, DefaultResParam objResParam, out string strErrMsg)
     {
         int    pl_intRetVal         = 0;
         int    pl_intUserNo         = 0;
         string pl_strUserName       = string.Empty;
         string pl_strPhoneNo        = string.Empty;
         Int16  pl_intUserAuth       = 0;
+        Int16  pl_intUserRole       = 0;
         Int16  pl_intStateCode      = 0;
         string pl_strCookieInfo     = string.Empty;
         string pl_strCurrEncryptPwd = string.Empty;
@@ -55,7 +56,7 @@ public class LoginHandler : AshxBaseHandler
             }
 
             //사용자 정보
-            pl_intRetVal = GetUserInfo(objReqParam.strI, out pl_intUserNo, out pl_strUserName, out pl_strPhoneNo, out pl_intUserAuth, out pl_intStateCode, out strErrMsg);
+            pl_intRetVal = GetUserInfo(objReqParam.strI, out pl_intUserNo, out pl_strUserName, out pl_strPhoneNo, out pl_intUserAuth, out pl_intUserRole, out pl_intStateCode, out strErrMsg);
             if (!pl_intRetVal.Equals(0))
             {
                 return pl_intRetVal;
@@ -66,7 +67,7 @@ public class LoginHandler : AshxBaseHandler
             objResParam.strErrMsg = strErrMsg;
 
             //쿠키 정보
-            pl_strCookieInfo = string.Format("{0}/{1}/{2}/{3}/{4}/{5}", pl_intUserNo, objReqParam.strI, pl_strUserName, pl_strPhoneNo, pl_intUserAuth, pl_intStateCode);
+            pl_strCookieInfo = string.Format("{0}/{1}/{2}/{3}/{4}/{5}/{6}", pl_intUserNo, objReqParam.strI, pl_strUserName, pl_strPhoneNo, pl_intUserAuth, pl_intUserRole, pl_intStateCode);
 
             //쿠키 생성
             UserGlobal.SetCookie(UserGlobal.BOQ_DEFAULT_COOKIE, UserGlobal.GetEncryptStr(pl_strCookieInfo));
@@ -112,14 +113,9 @@ public class LoginHandler : AshxBaseHandler
         public string   strEncFamilyEventNo { get; set; }
     }
 
-    //로그인 응답 클래스
-    public class VerifyLoginResParam : DefaultResParam
-    {
-    }
-
 
     //사용자 정보
-    private int GetUserInfo(string strUserID, out int intUserNo, out string strUserName, out string strPhoneNo, out Int16 intUserAuth, out Int16 intStateCode, out string strErrMsg)
+    private int GetUserInfo(string strUserID, out int intUserNo, out string strUserName, out string strPhoneNo, out Int16 intUserAuth, out Int16 intUserRole, out Int16 intStateCode, out string strErrMsg)
     {
         int  pl_intRetVal = 0;
         IDas pl_objDas    = null;
@@ -128,6 +124,7 @@ public class LoginHandler : AshxBaseHandler
         strUserName  = string.Empty;
         strPhoneNo   = string.Empty;
         intUserAuth  = 0;
+        intUserRole  = 0;
         intStateCode = 0;
         strErrMsg    = string.Empty;
         try
@@ -144,10 +141,12 @@ public class LoginHandler : AshxBaseHandler
             pl_objDas.AddParam("@po_strUserPhoneNo",DBType.adVarChar,  DBNull.Value,   100, ParameterDirection.Output);
             pl_objDas.AddParam("@po_intUserAuth",   DBType.adTinyInt,  DBNull.Value,   0,   ParameterDirection.Output);
 
+            pl_objDas.AddParam("@po_intUserRole",   DBType.adTinyInt,  DBNull.Value,   0,   ParameterDirection.Output);
             pl_objDas.AddParam("@po_intStateCode",  DBType.adTinyInt,  DBNull.Value,   0,   ParameterDirection.Output);
             pl_objDas.AddParam("@po_strErrMsg",     DBType.adVarChar,  DBNull.Value,   256, ParameterDirection.Output);
             pl_objDas.AddParam("@po_intRetVal",     DBType.adInteger,  DBNull.Value,   4,   ParameterDirection.Output);
             pl_objDas.AddParam("@po_strDBErrMsg",   DBType.adVarChar,  DBNull.Value,   256, ParameterDirection.Output);
+
             pl_objDas.AddParam("@po_intDBRetVal",   DBType.adInteger,  DBNull.Value,   4,   ParameterDirection.Output);
 
             pl_objDas.SetQuery("dbo.UP_LOGIN_USER_INFO_NT_GET");
@@ -159,6 +158,8 @@ public class LoginHandler : AshxBaseHandler
                 strUserName  = Convert.ToString(pl_objDas.GetParam("@po_strUserName"));
                 strPhoneNo   = Convert.ToString(pl_objDas.GetParam("@po_strUserPhoneNo"));
                 intUserAuth  = Convert.ToInt16(pl_objDas.GetParam("@po_intUserAuth"));
+                intUserRole  = Convert.ToInt16(pl_objDas.GetParam("@po_intUserRole"));
+
                 intStateCode = Convert.ToInt16(pl_objDas.GetParam("@po_intStateCode"));
             }
             else
@@ -301,6 +302,7 @@ public class LoginHandler : AshxBaseHandler
 
             pl_objDas.AddParam("@pi_intUserNo",         DBType.adInteger, intUserNo,        0,      ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intFamilyEventNo",  DBType.adBigInt,  intFamilyEventNo, 0,      ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intUserRole",       DBType.adTinyInt, 3,                0,      ParameterDirection.Input);
             pl_objDas.AddParam("@po_strErrMsg",         DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);
             pl_objDas.AddParam("@po_intRetVal",         DBType.adInteger, DBNull.Value,     4,      ParameterDirection.Output);
             pl_objDas.AddParam("@po_strDBErrMsg",       DBType.adVarChar, DBNull.Value,     256,    ParameterDirection.Output);

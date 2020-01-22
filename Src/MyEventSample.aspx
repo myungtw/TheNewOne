@@ -6,7 +6,7 @@
     $(document).ready(function () {
         //QR코드 그리기
         var qrcode = new QRCode("qrcode", {
-            text: "http://test.co.kr?encFamilyEventNo="+2,
+            text: "<%=strInvitationUrl%>",
             width: "250",
             height: "250",
             colorDark: "#000000",

@@ -10,6 +10,20 @@ public partial class FacilityTicketHoldList : PageBase
             return UserGlobal.GetAjaxTicket(Request);
         }
     }
+    protected string FamilyEventNo
+    {
+        get
+        {
+            return Request.QueryString["familyeventno"];
+        }
+    }
+    protected string FacilityTicketUseUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_FACILITY_TICKET_USE_URL;
+        }
+    }
 
     ///-----------------------------------------------------
     /// <summary>
