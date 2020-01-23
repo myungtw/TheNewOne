@@ -30,6 +30,13 @@ public partial class FamilyEventIndex : PageBase
             return UserGlobal.BOQ_FACILITY_TICKET_HOLD_URL;
         }
     }
+    protected string strPayInfoInsUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_PAY_INFO_INS_URL;
+        }
+    }
 
     ///-----------------------------------------------------
     /// <summary>

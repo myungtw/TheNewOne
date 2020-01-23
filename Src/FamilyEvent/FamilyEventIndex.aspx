@@ -116,8 +116,9 @@
             html += "       </div>";
             html += "       <div class='pp_footer'>";                            
             html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";
-            html += "           <a class='main_btn' href='#'>결제 하러가기</a>";
-            html += "           <a class='genric-btn info' href='javascript:fnFacilityTicketHoldList(" + objRet[i].FAMILYEVENTNO + ");'>시설이용권 사용</a>";
+            html += "           <a class='main_btn' href='javascript:fnPayInfoIns(" + objRet[i].FAMILYEVENTNO + ");'>결제 하러가기</a>";
+            if(objRet[i].FACILITYTICKETAMT > 0)
+                html += "           <a class='genric-btn info' href='javascript:fnFacilityTicketHoldList(" + objRet[i].FAMILYEVENTNO + ");'>시설이용권 사용</a>";
             html += "       </div>";
             html += "   </div>";
             html += "  </div>";
@@ -130,6 +131,12 @@
     //보유 시설이용권 정보
     function fnFacilityTicketHoldList(familyEventNo) {
         var url = '<%=strFacilityTicketHoldUrl %>' + "?familyeventno=" + familyEventNo;
+        window.document.location = url;
+    }
+
+    //보유 시설이용권 정보
+    function fnPayInfoIns(familyEventNo) {
+        var url = '<%=strPayInfoInsUrl %>' + "?familyeventno=" + familyEventNo;
         window.document.location = url;
     }
 
