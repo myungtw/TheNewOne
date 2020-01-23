@@ -90,7 +90,7 @@
     <section>
         <div class="container">
             <div class="main_title">
-                <a href="#" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>
+                <a href="javascript:;" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>
             </div>
         </div>
     </section>

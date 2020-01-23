@@ -75,7 +75,7 @@
                                 <%if (objSes.isLogin) {%>                    
                                 <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>  
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
+                                    <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/src/List/PayList.aspx">결제내역</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/src/List/ReceiveList.aspx">받은내역</a></li>
@@ -89,7 +89,7 @@
                                 <%} %>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                                <li class="nav-item"><a href="javascript:;" class="search"><i class="lnr lnr-magnifier"></i></a></li>
                             </ul>
                         </div> 
                     </div>

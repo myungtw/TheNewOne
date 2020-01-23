@@ -280,7 +280,7 @@
     <section>
         <div class="container">
             <div class="main_title">
-                <a href="#" id="payBtn" class="genric-btn danger-border circle arrow">결제하기<span class="lnr lnr-arrow-right"></span></a>
+                <a href="javascript:;" id="payBtn" class="genric-btn danger-border circle arrow">결제하기<span class="lnr lnr-arrow-right"></span></a>
             </div>
         </div>
     </section>
