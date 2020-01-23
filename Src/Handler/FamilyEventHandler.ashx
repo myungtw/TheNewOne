@@ -460,10 +460,11 @@ public class FamilyEventHandler : AshxBaseHandler
                                                                                                                                   
             pl_objDas.AddParam("@pi_intFamilyEventNo",            DBType.adBigInt,     objReq.intFamilyEventNo,            0,     ParameterDirection.Input);
             pl_objDas.AddParam("@pi_intJoinMstCategory",          DBType.adInteger,    objReq.intJoinMstCategory,          0,     ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intAdminNo",                  DBType.adInteger,    objSes.intUserNo,                   0,     ParameterDirection.Input);
             pl_objDas.AddParam("@po_strErrMsg",                   DBType.adVarChar,    DBNull.Value,                       256,   ParameterDirection.Output);
             pl_objDas.AddParam("@po_intRetVal",                   DBType.adInteger,    DBNull.Value,                       0,     ParameterDirection.Output);
-            pl_objDas.AddParam("@po_strDBErrMsg",                 DBType.adVarChar,    DBNull.Value,                       256,   ParameterDirection.Output);
-                                                                                                                                  
+
+            pl_objDas.AddParam("@po_strDBErrMsg",                 DBType.adVarChar,    DBNull.Value,                       256,   ParameterDirection.Output);                                                                                                                                  
             pl_objDas.AddParam("@po_intDBRetVal",                 DBType.adInteger,    DBNull.Value,                       0,     ParameterDirection.Output);
 
             pl_objDas.SetQuery("dbo.UP_FACILITY_TICKET_TX_INS");

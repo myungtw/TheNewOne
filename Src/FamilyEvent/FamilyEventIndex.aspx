@@ -55,8 +55,7 @@
             html += "       </div>";
             html += "       <div class='pp_footer'>";                            
             html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";                        
-            html += "           <a class='main_btn' href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>경조사 관리</a>";  
-            html += "           <a class='genric-btn info' href='#'>시설이용권 발급</a>";          
+            html += "           <a class='main_btn' href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>경조사 관리</a>";    
             html += "       </div>";
             html += "   </div>";
             html += "  </div>";
