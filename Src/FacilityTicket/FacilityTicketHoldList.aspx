@@ -4,7 +4,10 @@
 <script src="/Lib/qrcode.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            fnGetFacilityTicketList() 
+            fnGetFacilityTicketList();
+            $("#facilityBtn").on("click", function(){
+                location.href="/Src/FacilityTicket/FacilityTicketEventDtl.aspx?familyeventno="+<%=FamilyEventNo%>;
+            });
         });
         
 
@@ -90,7 +93,8 @@
     <section>
         <div class="container">
             <div class="main_title">
-                <a href="javascript:;" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>
+                <a href="#" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>
+                <a href="#" class="genric-btn danger-border circle arrow" id="facilityBtn">시설이용권 관리<span class="lnr lnr-arrow-right"></span></a>
             </div>
         </div>
     </section>
