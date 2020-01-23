@@ -44,9 +44,9 @@
             $("#menuName").html("<%=subTitle%>");
             $("#pageLink").html(html);
 
-            $(".submenu>a").each(function () {
+            $(".nav-item>a").each(function () {
 
-                if ($(this).text() == "<%=mainTitle%>") {
+                if ($(this).text() == "<%=mainTitle%>" ||$(this).text() == "<%=subTitle%>") {
                     $(this).closest("li").addClass("active");
                 }
             });
@@ -72,24 +72,13 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
-                                <%if (objSes.isLogin) {%>
-                                <%if (objSes.intUserRole.Equals(1) || objSes.intUserRole.Equals(2)) { %>                                    
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">경조사 관리</a>
-                                    <ul class="dropdown-menu">
-                                        <%if(objSes.intUserRole.Equals(1)) { %>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>                            
-                                        <%} else if(objSes.intUserRole.Equals(2)) { %>  
-                                        <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">시설이용권 추가 발급</a></li>
-                                        <%} %> 
-                                    </ul>
-                                </li>
-                                <%} %>                           
+                                <%if (objSes.isLogin) {%>                    
+                                <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>  
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/src/List/PayList.aspx">결제내역</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/src/List/ReceiveList.aspx">받은내역</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/src/List/RefundList.aspx">환전내역</a></li>
                                     </ul>
                                 </li>

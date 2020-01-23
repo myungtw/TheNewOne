@@ -87,7 +87,7 @@ public class PayHandler : AshxBaseHandler
 
             pl_objDas.SetQuery("dbo.UP_EVENT_PAY_UR_LST");
 
-            objRes.intRowCnt = pl_objDas.RecordCount;
+            objRes.intRowCnt = Convert.ToInt32(pl_objDas.GetParam("@po_intRecordCnt"));
             objRes.objDT     = pl_objDas.objDT;
         }
         catch (Exception pl_objEx)
@@ -138,7 +138,58 @@ public class PayHandler : AshxBaseHandler
             pl_objDas.AddParam("@po_intRecordCnt", DBType.adInteger, DBNull.Value,       0, ParameterDirection.Output);
             pl_objDas.SetQuery("dbo.UP_USER_PAY_UR_LST");
 
-            objRes.intRowCnt = pl_objDas.RecordCount;
+            objRes.intRowCnt = Convert.ToInt32(pl_objDas.GetParam("@po_intRecordCnt"));
+            objRes.objDT     = pl_objDas.objDT;
+        }
+        catch (Exception pl_objEx)
+        {
+            pl_intRetVal = -15213;
+            strErrMsg    = pl_objEx.Message + pl_objEx.StackTrace;
+            UtilLog.WriteExceptionLog(pl_objEx.Message, pl_objEx.StackTrace);
+        }
+        finally
+        {
+            if (pl_objDas != null)
+            {
+                pl_objDas.Close();
+                pl_objDas = null;
+            }
+        }
+
+        return pl_intRetVal;
+    }
+
+    
+    //-------------------------------------------------------------
+    /// <summary>
+    /// 회원별 받은 내역조회
+    /// </summary>
+    //-------------------------------------------------------------
+    [MethodSet(loggingFlag = true, pageType = PageAccessType.Login, strRepresentMsg = strDefaultMsg)]
+    private int GetReceiveList(PayListReqParam objReq, DefaultListResParam objRes, out string strErrMsg)
+    {
+        int  pl_intRetVal = 0;
+        IDas pl_objDas    = null;
+        strErrMsg         = string.Empty;
+
+        try
+        {
+            //사용자 정보 조회        
+            pl_objDas = new IDas();
+            pl_objDas.Open(UserGlobal.BOQ_HOST_DAS);
+            pl_objDas.CommandType = CommandType.StoredProcedure;
+            pl_objDas.CodePage = 0;
+
+            pl_objDas.AddParam("@pi_intUserNo",    DBType.adInteger, objSes.intUserNo,   0, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_dtFromYMD",    DBType.adVarChar, "",                 8, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_dtToYMD",      DBType.adVarChar, "",                 8, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intPageNo",    DBType.adInteger, 1,                  0, ParameterDirection.Input);
+            pl_objDas.AddParam("@pi_intPageSize",  DBType.adInteger, objReq.intPageSize, 0, ParameterDirection.Input);
+
+            pl_objDas.AddParam("@po_intRecordCnt", DBType.adInteger, DBNull.Value,       0, ParameterDirection.Output);
+            pl_objDas.SetQuery("dbo.UP_RECEIVE_UR_LST");
+
+            objRes.intRowCnt = Convert.ToInt32(pl_objDas.GetParam("@po_intRecordCnt"));
             objRes.objDT     = pl_objDas.objDT;
         }
         catch (Exception pl_objEx)
