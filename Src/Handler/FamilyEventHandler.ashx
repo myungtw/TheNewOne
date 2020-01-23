@@ -272,7 +272,7 @@ public class FamilyEventHandler : AshxBaseHandler
             objResParam.intStateCode         = Convert.ToInt16(pl_objDas.GetParam("@po_intStateCode"));
             objResParam.strRegDate           = pl_objDas.GetParam("@po_strRegDate");
             objResParam.strUpdDate           = pl_objDas.GetParam("@po_strUpdDate");
-            objResParam.mnyMinPayAmt         = String.Format("{0:#,###}", Convert.ToDouble(pl_objDas.GetParam("@po_mnyMinPayAmt")));
+            objResParam.mnyMinPayAmt         = String.Format("{0:#,##0}", Convert.ToDouble(pl_objDas.GetParam("@po_mnyMinPayAmt")));
 
             objResParam.intMaxFoodTicket     = Convert.ToInt32(pl_objDas.GetParam("@po_intMaxFoodTicket"));
             objResParam.intMaxParkingTicket  = Convert.ToInt32(pl_objDas.GetParam("@po_intMaxParkingTicket"));

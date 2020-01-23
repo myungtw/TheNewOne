@@ -63,7 +63,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <div class="container box_1620">
                         <!-- Brand and toggle get grouped for better mobile display -->
-                        <a class="navbar-brand logo_h" href="/src/FamilyEvent/FamilyEventIndex.aspx"><img src="img/logo.png" alt=""></a>
+                        <a class="navbar-brand logo_h" href="/src/FamilyEvent/FamilyEventIndex.aspx"><img src="/DesignTemplate/ci_payletter.png" alt=""></a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -75,7 +75,7 @@
                                 <%if (objSes.isLogin) {%>                    
                                 <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>  
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
+                                    <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/src/List/PayList.aspx">결제내역</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/src/List/ReceiveList.aspx">받은내역</a></li>
@@ -89,7 +89,7 @@
                                 <%} %>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                                <li class="nav-item"><a href="javascript:;" class="search"><i class="lnr lnr-magnifier"></i></a></li>
                             </ul>
                         </div> 
                     </div>

@@ -165,8 +165,8 @@
 <section>
     <div class="container">
         <div class="main_title">
-            <a href="#" class="genric-btn danger-border circle arrow">내정보 보기<span class="lnr lnr-arrow-right"></span></a>
-            <a href="#" class="genric-btn danger-border circle arrow">내역 조회<span class="lnr lnr-arrow-right"></span></a>
+            <a href="javascript:;" class="genric-btn danger-border circle arrow">내정보 보기<span class="lnr lnr-arrow-right"></span></a>
+            <a href="javascript:;" class="genric-btn danger-border circle arrow">내역 조회<span class="lnr lnr-arrow-right"></span></a>
         </div>
     </div>
 </section>
