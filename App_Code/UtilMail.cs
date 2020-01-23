@@ -82,7 +82,7 @@ namespace bill.payletter.com.CommonModule
                 pl_objCtx    = HttpContext.Current;
                 pl_strIPAddr = UserGlobal.GetClientIP();
 
-                pl_strMailSuject = string.Format("[{0}][{1}][{2}]-{3}", Dns.GetHostName().ToUpper(), "Golfzon GDRPos", strSubject, pl_objCtx.Request.ServerVariables.Get("HTTP_HOST") + pl_objCtx.Request.FilePath.ToString());
+                pl_strMailSuject = string.Format("[{0}][{1}][{2}]-{3}", Dns.GetHostName().ToUpper(), "FamilyEvent", strSubject, pl_objCtx.Request.ServerVariables.Get("HTTP_HOST") + pl_objCtx.Request.FilePath.ToString());
 
                 pl_sbMailInfo.Append("<B>Server</B><BR/>");
                 pl_sbMailInfo.AppendFormat("ServerName: {0}", pl_objCtx.Request.ServerVariables.Get("HTTP_HOST"));
@@ -204,7 +204,7 @@ namespace bill.payletter.com.CommonModule
                 pl_objCtx    = HttpContext.Current;
                 pl_strIPAddr = UserGlobal.GetClientIP();
 
-                pl_strMailSuject = string.Format("[{0}][{1}][Exception error]-{2}", Dns.GetHostName().ToUpper(), "Golfzon GDRPos", pl_objCtx.Request.ServerVariables.Get("HTTP_HOST") + pl_objCtx.Request.FilePath.ToString());
+                pl_strMailSuject = string.Format("[{0}][{1}][Exception error]-{2}", Dns.GetHostName().ToUpper(), "FamilyEvent", pl_objCtx.Request.ServerVariables.Get("HTTP_HOST") + pl_objCtx.Request.FilePath.ToString());
 
                 pl_sbMailInfo.Append("<B>Server</B><BR/>");
                 pl_sbMailInfo.AppendFormat("ServerName: {0}", pl_objCtx.Request.ServerVariables.Get("HTTP_HOST"));
