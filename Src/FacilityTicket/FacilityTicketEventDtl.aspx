@@ -118,7 +118,7 @@
 <section>
     <div class="container">
         <div class="main_title">
-            <a class="genric-btn danger-border" href="#" id="useBtn">이용권 조회 및 사용</a>
+            <a class="genric-btn danger-border" href="javascript:;" id="useBtn">이용권 조회 및 사용</a>
         </div>
     </div>
 </section>
