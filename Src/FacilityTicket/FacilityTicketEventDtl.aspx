@@ -20,7 +20,7 @@
             reqParam["intFacilityTicketType"]    = $(this).data("type");
             reqParam["intFacilityTicketAmount"]  = 1;
 
-            reqParam["intFacilityTicketRegType"] = 2;
+            reqParam["intFacilityTicketRegType"] = 1;
             reqParam["intJoinMstCategory"]       = $(this).data("category");
             BOQ.Ajax.jQuery.fnRequest(REQUESTTYPE.JSON, reqParam, callURL, callBack, false);
         }
