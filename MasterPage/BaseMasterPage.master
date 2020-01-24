@@ -73,7 +73,7 @@
                         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                             <ul class="nav navbar-nav menu_nav ml-auto">
                                 <%if (objSes.isLogin) {%>                    
-                                <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 경조사</a></li>  
+                                <li class="nav-item"><a class="nav-link" href="/src/FamilyEvent/FamilyEventIndex.aspx">전체 이벤트</a></li>  
                                 <li class="nav-item submenu dropdown">
                                     <a href="javascript:;" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">내역 관리</a>
                                     <ul class="dropdown-menu">

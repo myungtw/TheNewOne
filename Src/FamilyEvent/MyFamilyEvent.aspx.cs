@@ -60,8 +60,8 @@ public partial class MyFamilyEvent : PageBase
     private void Page_Init(object sender, EventArgs e)
     {
         _pageAccessType = PageAccessType.Login;
-        ((BaseMasterPage)Page.Master).mainTitle = "경조사 관리";
-        ((BaseMasterPage)Page.Master).subTitle  = "나의 경조사";
+        ((BaseMasterPage)Page.Master).mainTitle = "이벤트 관리";
+        ((BaseMasterPage)Page.Master).subTitle  = "나의 이벤트";
         return;
     }
 
