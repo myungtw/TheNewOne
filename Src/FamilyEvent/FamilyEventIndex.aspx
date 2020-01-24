@@ -49,7 +49,7 @@
             html += "       </div>";
             html += "   </a>";
             html += "   <div class='pp_content'>";
-            html += "       <a href='javascript:fnMyFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
+            html += "       <h4>" + objRet[i].FAMILYEVENTNAME + "</h4>";
             html += "       <div class='tags'>";
             html += "           <h5>" + objRet[i].HALLADDRESS + "</h5>";
             html += "       </div>";
@@ -102,19 +102,22 @@
         for (i = 0; i < objRet.length; i++) {
             html += "<div class='col-lg-4'>";
             html += "  <div class='properties_item'>";
-                
-            html += "   <a href='javascript:fnInvitedFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'>";
+
+            if (objRet[i].FACILITYTICKETAMT > 0)
+                html += "   <a href='javascript:fnFacilityTicketHoldList(" + objRet[i].FAMILYEVENTNO + ");'>";
+            else
+                html += "   <a href='javascript:fnPayInfoIns(" + objRet[i].FAMILYEVENTNO + ");'>";
             html += "       <div class='pp_img'>";
             html += "           <img class='img-fluid' src='" + objRet[i].ROOMIMG + "' alt=''>";
             html += "       </div>";
             html += "   </a>";
             html += "   <div class='pp_content'>";
-            html += "       <a href='javascript:fnInvitedFamilyEvent(" + objRet[i].FAMILYEVENTNO + ");'><h4>" + objRet[i].FAMILYEVENTNAME + "</h4></a>";
+            html += "       <h4>" + objRet[i].FAMILYEVENTNAME + "</h4>";
             html += "       <div class='tags'>";
             html += "           <h5>" + objRet[i].HALLADDRESS + "</h5>";
             html += "       </div>";
-            html += "       <div class='pp_footer'>";                            
-            html += "           <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";
+            html += "       <h5 style='height: 30px;'>" + objRet[i].FAMILYEVENTYMD + " " + objRet[i].FAMILYEVENTWEEK + " " + objRet[i].FAMILYEVENTTIME + "</h5>";
+            html += "       <div class='pp_footer'>";
             html += "           <a class='main_btn' href='javascript:fnPayInfoIns(" + objRet[i].FAMILYEVENTNO + ");'>결제 하러가기</a>";
             if(objRet[i].FACILITYTICKETAMT > 0)
                 html += "           <a class='genric-btn info' href='javascript:fnFacilityTicketHoldList(" + objRet[i].FAMILYEVENTNO + ");'>시설이용권 사용</a>";
