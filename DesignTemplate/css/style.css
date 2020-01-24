@@ -2432,7 +2432,7 @@ h6 {
   display: inline-block;
   outline: none;
   line-height: 40px;
-  padding: 0 30px;
+  padding: 0 20px;
   font-size: .9em;
   text-align: center;
   text-decoration: none;
@@ -3530,7 +3530,7 @@ h6 {
 .main_btn {
   display: inline-block;
   background: #f5204b;
-  padding: 0px 50px;
+  padding: 0px 25px;
   color: #fff;
   font-family: "Roboto", sans-serif;
   font-size: 13px;
