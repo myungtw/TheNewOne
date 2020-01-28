@@ -24,6 +24,14 @@ public partial class MyFamilyEvent : PageBase
             return UserGlobal.BOQ_FAMILYEVENT_INDEX_URL;
         }
     }
+    
+    protected string strReceiveListUrl
+    {
+        get
+        {
+            return UserGlobal.BOQ_RECEIVE_LIST_URL;
+        }
+    }
 
     protected string strLoginUrl
     {

@@ -316,6 +316,11 @@
         $("#FacilityTicketParking").val("");
     }
 
+    //반은 내역 조회
+    function fnOpenRecevieList() {
+        window.location.href = "<%=strReceiveListUrl %>";
+    }
+
 </script>
 
 
@@ -401,7 +406,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="#0" onclick="fnOpenQRCode()" class="genric-btn danger-border circle arrow">QR 코드 발급<span class="lnr lnr-arrow-right"></span></a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="#0" class="genric-btn danger-border circle arrow">상세 내역 조회<span class="lnr lnr-arrow-right"></span></a>
+            <a href="#0" onclick="fnOpenRecevieList()" class="genric-btn danger-border circle arrow">상세 내역 조회<span class="lnr lnr-arrow-right"></span></a>
         </div>
     </div>
 
