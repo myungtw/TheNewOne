@@ -174,6 +174,7 @@ namespace bill.payletter.com.CommonModule
         public static string    BOQ_FAMILYEVENT_MYEVENT_URL     = "/Src/FamilyEvent/MyFamilyEvent.aspx";                //내 이벤트 페이지
         public static string    BOQ_FACILITY_TICKET_HOLD_URL    = "/Src/FacilityTicket/FacilityTicketHoldList.aspx";    //보유 시설 이용권 페이지
         public static string    BOQ_FACILITY_TICKET_USE_URL     = "/Src/FacilityTicket/FacilityTicketUse.aspx";         //시설 이용권 사용 페이지
+        public static string    BOQ_RECEIVE_LIST_URL            = "/Src/List/ReceiveList.aspx";                         //받은 내역 페이지
         public static string    BOQ_PAY_INFO_INS_URL            = "/Src/Pay/PayInfoIns.aspx";                           //결제 정보 입력 페이지
         #endregion
 
@@ -198,6 +199,7 @@ namespace bill.payletter.com.CommonModule
                     BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
                     BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
                     BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
+                    BOQ_RECEIVE_LIST_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_RECEIVE_LIST_URL);
                     BOQ_PAY_INFO_INS_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_PAY_INFO_INS_URL);
                     #region DB(데몬) 정보
                     BOQ_HOST_DAS                = GetDecryptStr(ConfigurationManager.AppSettings["BOQDAS_HOST_PAY"]);
@@ -227,6 +229,7 @@ namespace bill.payletter.com.CommonModule
                     BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
                     BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
                     BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
+                    BOQ_RECEIVE_LIST_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_RECEIVE_LIST_URL);
                     BOQ_PAY_INFO_INS_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_PAY_INFO_INS_URL);
 
                     #region DB(데몬) 정보
@@ -257,6 +260,7 @@ namespace bill.payletter.com.CommonModule
                     BOQ_FAMILYEVENT_MYEVENT_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FAMILYEVENT_MYEVENT_URL);
                     BOQ_FACILITY_TICKET_HOLD_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_HOLD_URL);
                     BOQ_FACILITY_TICKET_USE_URL = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_FACILITY_TICKET_USE_URL);
+                    BOQ_RECEIVE_LIST_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_RECEIVE_LIST_URL);
                     BOQ_PAY_INFO_INS_URL        = string.Concat(BOQ_DEFAULT_DOMAIN, BOQ_PAY_INFO_INS_URL);
 
                     #region DB(데몬) 정보
