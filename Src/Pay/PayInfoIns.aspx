@@ -9,6 +9,9 @@
                     alert("금액을 확인해주세요");
                     return;
                 }
+                else if ($("input[name=payAmt]:checked").val() == "-1") {
+                    $("#payamt6").val($("#payamtDirect").val());
+                }
                 $("input[name=pgCode]").val($("input[name=paytool]:checked").data("pgcode"));
                 $("input[name=paytoolName]").val($("input[name=paytool]:checked").data("paytoolname"));
                 $("#form1").attr("action", "/Src/Pay/POQ.aspx");
@@ -73,8 +76,8 @@
                         html += "<div class='row'>";
                     }
                     html += "<div class='col-md-4'>"
-                         + "    <div class='switch-wrap d-flex justify-content-between'>"
-                         + "        <p><label for='mst" + i + "'>" + objDT[i].JOINMSTCATEGORYNAME + "</label></p>"
+                         + "    <div class='switch-wrap d-flex '>"
+                         + "        <p><label for='mst" + i + "'>" + objDT[i].JOINMSTCATEGORYNAME + "</label></p>&nbsp&nbsp&nbsp"
                          + "        <div class='primary-radio'>"
                          + "            <input type='radio' id='mst" + i + "' name='joinMstCategory' value='" + objDT[i].JOINMSTCATEGORY + "' ";
                     if (i == 0) {
@@ -83,7 +86,7 @@
                     else {
                         html += ">"
                     }
-                    html += "            <label for='sub" + i + "'></label>"
+                    html += "            <label for='mst" + i + "'></label>"
                          + "        </div>"
                          + "    </div>"
                          + "</div>";
@@ -113,8 +116,8 @@
                         html+="<div class='row'>";
                     }
                     html += "<div class='col-md-4'>"
-                         + "    <div class='switch-wrap d-flex justify-content-between'>"
-                         + "        <p><label for='sub" + i + "'>" + objDT[i].JOINSUBCATEGORYNAME + "</label></p>"
+                         + "    <div class='switch-wrap d-flex '>"
+                         + "        <p><label for='sub" + i + "'>" + objDT[i].JOINSUBCATEGORYNAME + "</label></p>&nbsp&nbsp&nbsp"
                          + "        <div class='primary-radio'>"
                          + "            <input type='radio' id='sub" + i + "' name='joinSubCategory' value='" + objDT[i].JOINSUBCATEGORY + "' ";
                     if (i == 0) {
@@ -150,8 +153,8 @@
                         html += "<div class='row'>";
                     }
                     html += "<div class='col-md-4'>"
-                         + "    <div class='switch-wrap d-flex justify-content-between'>"
-                         + "        <p><label for='paytool" + i + "'>" + objDT[i].PAYTOOLNAME + "</label></p>"
+                         + "    <div class='switch-wrap d-flex '>"
+                         + "        <p><label for='paytool" + i + "'>" + objDT[i].PAYTOOLNAME + "</label></p>&nbsp&nbsp&nbsp"
                          + "        <div class='primary-radio'>"
                          + "            <input type='radio' id='paytool" + i + "' name='paytool' data-paytoolname='" + objDT[i].PAYTOOLNAME + "' data-pgcode='" + objDT[i].PGCODE + "' value='" + objDT[i].PAYTOOL + "' ";
                     if (i == 0) {
@@ -215,8 +218,8 @@
 						<blockquote class="generic-blockquote">
 						<div class="row">
 							<div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt1">30,000 원</label></p>
+                                <div class="switch-wrap d-flex">
+									<p><label for="payamt1">30,000 원</label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt1" name="payAmt" checked="checked" value="30000">
 										<label for="payamt1"></label>
@@ -224,8 +227,8 @@
 								</div>
 							</div>
                             <div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt2">50,000 원</label></p>
+                                <div class="switch-wrap d-flex">
+									<p><label for="payamt2">50,000 원</label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt2" name="payAmt" value="50000">
 										<label for="payamt2"></label>
@@ -233,8 +236,8 @@
 								</div>
 							</div>
                             <div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt3">100,000 원</label></p>
+                                <div class="switch-wrap d-flex ">
+									<p><label for="payamt3">100,000 원</label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt3" name="payAmt" value="100000">
 										<label for="payamt3"></label>
@@ -244,8 +247,8 @@
                         </div>
                         <div class="row">
 							<div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt4">200,000 원</label></p>
+                                <div class="switch-wrap d-flex ">
+									<p><label for="payamt4">200,000 원</label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt4" name="payAmt" value="200000">
 										<label for="payamt4"></label>
@@ -253,8 +256,8 @@
 								</div>
 							</div>
                             <div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt5">300,000 원</label></p>
+                                <div class="switch-wrap d-flex ">
+									<p><label for="payamt5">300,000 원</label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt5" name="payAmt" value="300000">
 										<label for="payamt5"></label>
@@ -262,8 +265,8 @@
 								</div>
 							</div>
                             <div class="col-md-4">
-                                <div class="switch-wrap d-flex justify-content-between">
-									<p><label for="payamt6"><input type="number" placeholder="직접 입력" min="0" class="form-control" id="payamtDirect" /></label></p>
+                                <div class="switch-wrap d-flex ">
+									<p><label for="payamt6"><input type="number" placeholder="직접 입력" min="0" class="form-control" id="payamtDirect" /></label></p>&nbsp&nbsp&nbsp
 									<div class="primary-radio">
 										<input type="radio" id="payamt6" name="payAmt" value="-1">
 										<label for="payamt6"></label>
