@@ -93,7 +93,7 @@
     <section>
         <div class="container">
             <div class="main_title">
-                <a href="#" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>
+                <%--<a href="#" class="genric-btn danger-border circle arrow">뒤로가기<span class="lnr lnr-arrow-right"></span></a>--%>
                 <a href="#" class="genric-btn danger-border circle arrow" id="facilityBtn">시설이용권 관리<span class="lnr lnr-arrow-right"></span></a>
             </div>
         </div>
